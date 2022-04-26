@@ -18,3 +18,9 @@ set -x SHELL /bin/bash
 
 # Created by `pipx` on 2022-03-14 15:48:49
 set PATH $PATH /Users/sspillane/.local/bin
+
+# Link gitconfig
+ln -s ~/.config/gitconfig ~/.gitconfig
+
+# Ensure nvim plug is installed
+nvim --headless +PlugInstall +qall
