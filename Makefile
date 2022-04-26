@@ -1,15 +1,18 @@
 docker--container = dev
-docker--command = docker compose run $1 --rm $(docker--container) $2
+docker--compose = $(shell if type "docker compose" 2> /dev/null; then echo "$$(which docker) compose"; else which "docker-compose"; fi)
+docker--command = $(docker--compose) run $1 --rm $(docker--container) $2
 export BELLPORT = ../bellport/
 
 all: build shell
 
 .env:
 	@echo BELLPORT=../bellport/ >> $@
+	@echo UID=$(shell id -u) >> $@
 
 .PHONY: build
 build: .env
-	docker compose build
+	echo $(docker--compose)
+	$(docker--compose) build --build-arg uid=$(shell id -u)
 
 .PHONY: shell
 shell: build
