@@ -4,9 +4,13 @@ services:
     build:
       context: . # Make CWD visible to building container.
       dockerfile: Dockerfile
+      args:
+        uid: ${UID}
+        user: ${USER}
     env_file: .env
     image: unidev
     network_mode: host
     volumes:
-      - /:/home/sspillane/host
+      - /:/home/${USER}/host
+      - ./config:/home/${USER}/.config
       - /var/run/docker.sock:/var/run/docker.sock # Connect docker
