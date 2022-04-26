@@ -74,9 +74,6 @@ WORKDIR /home/${user}
 # Set up pyenv
 RUN git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 ENV PATH=/home/${user}/.pyenv/bin:$PATH
-RUN mkdir -p /home/${user}/.config/fish
-RUN echo 'status is-login; and pyenv init --path | source' >> /home/${user}/.config/fish/config.fish
-RUN echo 'status is-interactive; and pyenv init - | source' >> /home/${user}/.config/fish/config.fish
 
 # Install python
 RUN pyenv install 3.10.4
