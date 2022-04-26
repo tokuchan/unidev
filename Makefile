@@ -25,4 +25,4 @@ clean:
 .PHONY: install
 install:
 	@mkdir -p ~/.local/bin
-	@cp unidev.sh ~/.local/bin/unidev
+	@cp bin/unidev.sh ~/.local/bin/unidev
