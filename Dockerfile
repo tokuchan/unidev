@@ -78,9 +78,5 @@ ENV PATH=/home/${user}/.pyenv/bin:$PATH
 # Install python
 RUN pyenv install 3.10.4
 
-# Install nvim plugin manager
-RUN sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-RUN nvim --headless +PlugInstall +qall
-
 # Run shell
 ENTRYPOINT /usr/bin/fish
