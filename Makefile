@@ -21,3 +21,8 @@ shell: build
 .PHONY: clean
 clean:
 	@-rm .env
+
+.PHONY: install
+install:
+	@mkdir -p ~/.local/bin
+	@cp unidev.sh ~/.local/bin/unidev
