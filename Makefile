@@ -4,6 +4,13 @@ docker--command = $(docker--compose) run $1 --rm $(docker--container) $2
 
 all: build shell
 
+.PHONY: install
+install:
+	@mkdir -p ~/.local/bin
+	@cp local/bin/unidev.sh ~/.local/bin/unidev
+	@git submodule init
+	@git submodule update
+
 .PHONY: .env
 .env:
 	@echo '# Generated file, do not edit' > $@
@@ -15,14 +22,9 @@ build: .env
 	@$(docker--compose) build
 
 .PHONY: shell
-shell: build
+shell: build install
 	@$(call docker--command,,sh)
 
 .PHONY: clean
 clean:
 	@-rm .env
-
-.PHONY: install
-install:
-	@mkdir -p ~/.local/bin
-	@cp bin/unidev.sh ~/.local/bin/unidev
