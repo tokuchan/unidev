@@ -27,6 +27,7 @@ automake \
 autopoint \
 bison \
 build-essential \
+ccls \
 cmake \
 curl \
 doxygen \
