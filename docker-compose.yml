@@ -14,4 +14,5 @@ services:
       - /:/home/${USER}/host
       - ./config:/home/${USER}/.config
       - ./local:/home/${USER}/.local
+      - ${HOME}/.ssh:/home/${USER}/.ssh
       - /var/run/docker.sock:/var/run/docker.sock # Connect docker

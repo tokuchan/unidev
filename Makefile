@@ -21,6 +21,7 @@ install:
 	@echo '# Generated file, do not edit' > $@
 	@echo UID=$(shell id -u) >> $@
 	@echo USER=$(shell whoami) >> $@
+	@echo HOME=$(HOME) >> $@
 
 .PHONY: build
 build: .env
