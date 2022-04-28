@@ -5,3 +5,4 @@ local/share/fish/fish_history
 *.swp
 *.swo
 local/share/nvim/shada/main.shada
+config/fish/fish_variables
