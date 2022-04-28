@@ -1,2 +1,7 @@
 .env
 .nvimlog
+local/share/nvim/
+local/share/fish/fish_history
+*.swp
+*.swo
+local/share/nvim/shada/main.shada

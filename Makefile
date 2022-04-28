@@ -1,8 +1,20 @@
 docker--container = dev
-docker--compose = $(shell if type "docker compose" 2> /dev/null; then echo "$$(which docker) compose"; else which "docker-compose"; fi)
+ifeq ($(shell type "docker compose" 2> /dev/null; echo $?), 0)
+	docker--compose := docker compose
+else
+	docker--compose := docker-compose
+endif
 docker--command = $(docker--compose) run $1 --rm $(docker--container) $2
 
 all: build shell
+
+.PHONY: install
+install:
+	@echo Docker compose command detected as: $(docker--compose)
+	@mkdir -p ~/.local/bin
+	@cp local/bin/unidev.sh ~/.local/bin/unidev
+	@git submodule init
+	@git submodule update
 
 .PHONY: .env
 .env:
@@ -15,14 +27,9 @@ build: .env
 	@$(docker--compose) build
 
 .PHONY: shell
-shell: build
+shell: build install
 	@$(call docker--command,,sh)
 
 .PHONY: clean
 clean:
 	@-rm .env
-
-.PHONY: install
-install:
-	@mkdir -p ~/.local/bin
-	@cp bin/unidev.sh ~/.local/bin/unidev
