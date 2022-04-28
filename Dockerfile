@@ -74,8 +74,9 @@ RUN chsh -s /usr/bin/fish
 
 # Set up a user and switch to that user for the remaining commands
 RUN useradd -u ${uid} -ms /usr/bin/fish ${user}
-RUN echo "sspillane:sspillane" | chpasswd
+#RUN echo "sspillane:sspillane" | chpasswd
 RUN adduser ${user} sudo
+RUN echo 'ALL            ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Set up some environment
 ENV LANGUAGE="en_US.UTF-8"
