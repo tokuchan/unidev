@@ -28,7 +28,7 @@ build: .env
 
 .PHONY: shell
 shell: build install
-	@$(call docker--command,,sh)
+	@$(call docker--command,-w ~/host/$(cwd),sh)
 
 .PHONY: clean
 clean:
