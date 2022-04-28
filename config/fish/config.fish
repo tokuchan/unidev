@@ -28,3 +28,7 @@ ln -s ~/.config/gitconfig ~/.gitconfig
 
 # Ensure nvim plug is installed
 nvim --headless +PlugInstall +qall
+
+# Set up keychain access
+keychain ${HOME}/.ssh/id_ed25519
+source ${HOME}/.keychain/${HOSTNAME}-fish

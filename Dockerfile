@@ -35,6 +35,7 @@ fish \
 flex \
 g++ \
 gettext \
+keychain \
 libboost-all-dev \
 libboost-python-dev \
 libbz2-dev \
