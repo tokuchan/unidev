@@ -68,8 +68,10 @@ RUN mkdir -p /usr/local/src \
  && cd /usr/local/src/neovim \
  && git checkout stable \
  && make \
- && make install \
- && update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110 \
+ && make install
+
+ARG CUSTOM_NVIM_PATH=/usr/local/bin/nvim
+RUN update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110 \
