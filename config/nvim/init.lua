@@ -1,7 +1,12 @@
+-- General settings
+vim.opt.wrap = false
+vim.opt.switchbuf = "usetab,split"
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = false
+
 -- Set up mouse mode for terminal
-vim.cmd [[
-  set mouse=a
-]]
+vim.opt.mouse = "a"
 
 -- Set things up for COC
 vim.cmd [[
