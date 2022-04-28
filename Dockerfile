@@ -29,45 +29,51 @@ bison \
 build-essential \
 cmake \
 curl \
+doxygen \
 fish \
 flex \
 g++ \
 gettext \
+libboost-all-dev \
+libboost-python-dev \
 libbz2-dev \
 libffi-dev \
 liblzma-dev \
 libncurses5-dev \
 libncursesw5-dev \
-libboost-all-dev \
-libboost-python-dev \
 libreadline-dev \
 libsqlite3-dev \
 libssl-dev \
 libtool \
+libtool-bin \
 llvm \
 locales \
 make \
 man \
 neovim \
+ninja-build \
 nodejs \
+pkg-config \
 sudo \
 tk-dev \
+unzip \
 wget \
 xz-utils \
 zlib1g-dev \
 zstd
 
 # Install neovim
-#ARG CUSTOM_NVIM_PATH=/usr/local/share/nvim.appimage
-#RUN curl -LO "https://github.com/neovim/neovim/releases/latest/download/nvim.appimage"
-#RUN mv nvim.appimage /usr/local/share/
-#RUN chmod ugo+x /usr/local/share/nvim.appimage \
-# && ln -s /usr/local/share/nvim.appimage /usr/local/bin/nvim \
-# && update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110 \
-# && update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110 \
-# && update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110 \
-# && update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110 \
-# && update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
+RUN mkdir -p /usr/local/src \
+ && git clone https://github.com/neovim/neovim /usr/local/src/neovim \
+ && cd /usr/local/src/neovim \
+ && git checkout stable \
+ && make \
+ && make install \
+ && update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110 \
+ && update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110 \
+ && update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110 \
+ && update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110 \
+ && update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
 
 # Set up shell
 RUN chsh -s /usr/bin/fish
