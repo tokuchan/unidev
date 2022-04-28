@@ -24,10 +24,13 @@ RUN ln -s /usr/local/share/add-apt-repository/add-apt-repository /usr/local/bin/
 RUN apt-get -y install \
 autoconf \
 automake \
+autopoint \
+bison \
 build-essential \
 cmake \
 curl \
 fish \
+flex \
 g++ \
 gettext \
 libbz2-dev \
@@ -35,11 +38,14 @@ libffi-dev \
 liblzma-dev \
 libncurses5-dev \
 libncursesw5-dev \
+libboost-all-dev \
+libboost-python-dev \
 libreadline-dev \
 libsqlite3-dev \
 libssl-dev \
 libtool \
 llvm \
+locales \
 make \
 man \
 neovim \
@@ -48,7 +54,8 @@ sudo \
 tk-dev \
 wget \
 xz-utils \
-zlib1g-dev
+zlib1g-dev \
+zstd
 
 # Install neovim
 #ARG CUSTOM_NVIM_PATH=/usr/local/share/nvim.appimage
@@ -67,7 +74,17 @@ RUN chsh -s /usr/bin/fish
 
 # Set up a user and switch to that user for the remaining commands
 RUN useradd -u ${uid} -ms /usr/bin/fish ${user}
+RUN echo "sspillane:sspillane" | chpasswd
 RUN adduser ${user} sudo
+
+# Set up some environment
+ENV LANGUAGE="en_US.UTF-8"
+ENV LC_ALL="en_US.UTF-8"
+ENV LC_CTYPE="en_US.UTF-8"
+ENV LANG="en_US.UTF-8"
+RUN locale-gen en_US.UTF-8
+RUN dpkg-reconfigure locales
+
 USER ${user}
 WORKDIR /home/${user}
 
