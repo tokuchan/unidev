@@ -22,6 +22,8 @@ install:
 	@echo UID=$(shell id -u) >> $@
 	@echo USER=$(shell whoami) >> $@
 	@echo HOME=$(HOME) >> $@
+	@echo SSH_AUTH_SOCK=$(SSH_AUTH_SOCK) >> $@
+	@echo SSH_AUTH_SOCK_DIR=$(shell dirname $(SSH_AUTH_SOCK)) >> $@
 
 .PHONY: build
 build: .env
