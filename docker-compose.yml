@@ -15,4 +15,5 @@ services:
       - ./config:/home/${USER}/.config
       - ./local:/home/${USER}/.local
       - ${HOME}/.ssh:/home/${USER}/.ssh
+      - ${SSH_AUTH_SOCK_DIR}:${SSH_AUTH_SOCK_DIR}
       - /var/run/docker.sock:/var/run/docker.sock # Connect docker

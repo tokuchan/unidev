@@ -95,6 +95,7 @@ ENV LC_CTYPE="en_US.UTF-8"
 ENV LANG="en_US.UTF-8"
 RUN locale-gen en_US.UTF-8
 RUN dpkg-reconfigure locales
+ENV SSH_AUTH_SOCK=${SSH_AUTH_SOCK}
 
 USER ${user}
 WORKDIR /home/${user}
