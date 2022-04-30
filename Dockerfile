@@ -106,6 +106,10 @@ ENV PATH=/home/${user}/.pyenv/bin:$PATH
 
 # Install python
 RUN pyenv install 3.10.4
+RUN mkdir -p /home/${user}/.local/src/pip
+RUN curl -Lo /home/${user}/.local/src/pip/get-pip.py https://bootstrap.pypa.io/get-pip.py
+RUN sudo python3 /home/${user}/.local/src/pip/get-pip.py
+RUN sudo pip install click sh rich
 
 # Run shell
 ENTRYPOINT /usr/bin/fish
