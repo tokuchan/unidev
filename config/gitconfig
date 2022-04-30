@@ -35,7 +35,7 @@
 
 [alias]
 	a = add
-	aliases = !$HOME/dev/config/aliases.py
+	aliases = !$HOME/.local/bin/aliases.py
 	br = branch -a
 	branches = branch -a
 	c = commit
