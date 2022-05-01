@@ -1,11 +1,12 @@
 FROM ubuntu:latest
 
+## Basic Setup
 ARG user=sspillane
 ARG uid
 
 MAINTAINER Sean Spillane
 
-LABEL description="Development container for Bellport"
+LABEL description="UNIversal DEVelopment environment"
 
 # Keep apt tools from prompting
 ARG DEBIAN_FRONTEND=noninteractive
@@ -18,6 +19,7 @@ RUN git clone https://github.com/timothyvanderaerden/add-apt-repository.git /usr
 RUN chmod ugo+rx /usr/local/share/add-apt-repository/add-apt-repository
 RUN ln -s /usr/local/share/add-apt-repository/add-apt-repository /usr/local/bin/add-apt-repository
 
+## Package Installation
 # Add custom APT repos
 
 # Install needed packages
@@ -67,6 +69,7 @@ zlib1g-dev \
 zsh \
 zstd
 
+## Custom Tooling (Root Level)
 # Install neovim
 RUN mkdir -p /usr/local/src \
  && git clone https://github.com/neovim/neovim /usr/local/src/neovim \
@@ -82,13 +85,13 @@ RUN update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
 
+## Custom Tooling (User Level)
 # Set up a user and switch to that user for the remaining commands
 RUN useradd -u ${uid} -ms /usr/bin/fish ${user}
-#RUN echo "sspillane:sspillane" | chpasswd
 RUN adduser ${user} sudo
 RUN echo 'ALL            ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers
 
-# Set up some environment
+# Set up environment needed for pyenv
 ENV LANGUAGE="en_US.UTF-8"
 ENV LC_ALL="en_US.UTF-8"
 ENV LC_CTYPE="en_US.UTF-8"
