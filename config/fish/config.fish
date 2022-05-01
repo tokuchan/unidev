@@ -23,9 +23,6 @@ set PATH $PATH /Users/sspillane/.local/bin
 status is-login; and pyenv init --path | source
 status is-interactive; and pyenv init - | source
 
-# Link gitconfig
-ln -s ~/.config/gitconfig ~/.gitconfig
-
 # Ensure nvim plug is installed
 nvim --headless +PlugInstall +qall
 
