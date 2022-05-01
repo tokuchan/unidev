@@ -11,10 +11,10 @@ services:
     image: unidev
     network_mode: host
     volumes:
-      - ./home:/home/${USER}
+      - ./profiles/${profile}/home:/home/${USER}
       - /:/home/${USER}/host
-      - ./config:/home/${USER}/.config
-      - ./local:/home/${USER}/.local
+      - ./profiles/${profile}/config:/home/${USER}/.config
+      - ./profiles/${profile}/local:/home/${USER}/.local
       - ${HOME}/.ssh:/home/${USER}/.ssh
       - ${SSH_AUTH_SOCK_DIR}:${SSH_AUTH_SOCK_DIR}
       - /var/run/docker.sock:/var/run/docker.sock # Connect docker

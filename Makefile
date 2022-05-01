@@ -12,12 +12,12 @@ all: build shell
 install:
 	@echo Docker compose command detected as: $(docker--compose)
 	@mkdir -p ~/.local/bin
-	@cp local/bin/unidev.sh ~/.local/bin/unidev
+	@cp unidev.sh ~/.local/bin/unidev
 	@git submodule init
 	@git submodule update
 
 .PHONY: .env
-.env: config.env
+.env: profiles/$(profile)/config.env
 	@echo '# Generated file, do not edit' > $@
 	@echo UID=$(shell id -u) >> $@
 	@echo USER=$(shell whoami) >> $@
@@ -32,6 +32,7 @@ build: .env
 
 .PHONY: shell
 shell: build install
+	@echo "Profile: $(profile)"
 	@$(call docker--command,-w ~/host/$(cwd),sh)
 
 .PHONY: clean

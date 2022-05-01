@@ -2,7 +2,7 @@
 	path = local/share/nvim/plugged/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
 [submodule "local/share/nvim/plugged/nvim-treesitter"]
-	path = local/share/nvim/plugged/nvim-treesitter
+	path = profiles/default/local/share/nvim/plugged/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
 [submodule "coc.nvim"]
 	path = coc.nvim
