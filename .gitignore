@@ -7,3 +7,4 @@ local/share/fish/fish_history
 local/share/nvim/shada/main.shada
 config/fish/fish_variables
 local/lib/python3.10/site-packages/
+home/.cache
