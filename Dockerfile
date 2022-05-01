@@ -25,6 +25,7 @@ RUN apt-get -y install \
 autoconf \
 automake \
 autopoint \
+bash \
 bison \
 build-essential \
 ccls \
@@ -57,11 +58,13 @@ ninja-build \
 nodejs \
 pkg-config \
 sudo \
+tcsh \
 tk-dev \
 unzip \
 wget \
 xz-utils \
 zlib1g-dev \
+zsh \
 zstd
 
 # Install neovim
