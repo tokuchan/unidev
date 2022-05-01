@@ -2,7 +2,7 @@
 usage() { echo "Usage: $) [-p <profile>]" 1>&2; exit 1; }
 
 cwd=$(pwd -P)
-profile=default
+profile=${UNIDEV__DEFAULT_PROFILE:-default}
 
 while getopts "hp:" o; do
 	case "${o}" in
