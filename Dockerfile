@@ -82,9 +82,6 @@ RUN update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
 
-# Set up shell
-RUN chsh -s /usr/bin/fish
-
 # Set up a user and switch to that user for the remaining commands
 RUN useradd -u ${uid} -ms /usr/bin/fish ${user}
 #RUN echo "sspillane:sspillane" | chpasswd
@@ -114,5 +111,10 @@ RUN curl -Lo /home/${user}/.local/src/pip/get-pip.py https://bootstrap.pypa.io/g
 RUN sudo python3 /home/${user}/.local/src/pip/get-pip.py
 RUN sudo pip install click sh rich
 
+## User Environment Startup
+# Set up user environment
+ENV EDITOR=${UNIDEV__EDITOR}
+ENV SHELL=${UNIDEV__SHELL}
+
 # Run shell
-ENTRYPOINT /usr/bin/fish
+ENTRYPOINT ${UNIDEV__SHELL}
