@@ -116,8 +116,10 @@ RUN sudo pip install click sh rich
 
 ## User Environment Startup
 # Set up user environment
-ENV EDITOR=${UNIDEV__EDITOR}
-ENV SHELL=${UNIDEV__SHELL}
+ARG shell
+ARG editor
+ENV EDITOR=${editor}
+ENV SHELL=${shell}
 
 # Run shell
-ENTRYPOINT ${UNIDEV__SHELL}
+ENTRYPOINT ${shell}

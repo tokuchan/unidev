@@ -7,6 +7,8 @@ services:
       args:
         uid: ${UID}
         user: ${USER}
+        shell: ${UNIDEV__SHELL}
+        editor: ${UNIDEV__EDITOR}
     env_file: .env
     image: unidev
     network_mode: host
