@@ -122,4 +122,4 @@ ENV EDITOR=${editor}
 ENV SHELL=${shell}
 
 # Run shell
-ENTRYPOINT ${shell}
+ENTRYPOINT $SHELL
