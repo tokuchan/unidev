@@ -1,7 +1,10 @@
 *.swo
 *.swp
 .env
+.bash_history
+.lesshst
 .nvimlog
+.sudo_as_admin_successful
 profiles/*/config/fish/fish_variables
 profiles/*/home/.cache
 profiles/*/local/lib/python3.10/site-packages/
