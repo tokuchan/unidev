@@ -104,7 +104,7 @@ USER ${user}
 WORKDIR /home/${user}
 
 # Set up pyenv
-RUN git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+RUN git clone https://github.com/pyenv/pyenv.git /home/${user}/.pyenv
 ENV PATH=/home/${user}/.pyenv/bin:$PATH
 
 # Install python
