@@ -31,3 +31,6 @@
 [submodule "which-key.nvim"]
 	path = which-key.nvim
 	url = git@github.com:tokuchan/unidev.git
+[submodule "profiles/default/home/.emacs.d"]
+	path = profiles/default/home/.emacs.d
+	url = https://github.com/syl20bnr/spacemacs
