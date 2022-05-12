@@ -58,6 +58,7 @@ locales \
 make \
 man \
 neovim \
+npm \
 ninja-build \
 nodejs \
 pkg-config \
@@ -86,6 +87,9 @@ RUN update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
+
+# Install pyright lsp
+RUN npm install -g pyright
 
 ## Custom Tooling (User Level)
 # Set up a user and switch to that user for the remaining commands
