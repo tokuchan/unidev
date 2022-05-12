@@ -40,6 +40,7 @@ fish \
 flex \
 g++ \
 gettext \
+ispell \
 keychain \
 libboost-all-dev \
 libboost-python-dev \
@@ -62,6 +63,7 @@ npm \
 ninja-build \
 nodejs \
 pkg-config \
+ripgrep \
 sudo \
 tcsh \
 tk-dev \
@@ -118,7 +120,7 @@ RUN pyenv install 3.10.4
 RUN mkdir -p /home/${user}/.local/src/pip
 RUN curl -Lo /home/${user}/.local/src/pip/get-pip.py https://bootstrap.pypa.io/get-pip.py
 RUN sudo python3 /home/${user}/.local/src/pip/get-pip.py
-RUN sudo pip install click sh rich
+RUN sudo pip install click sh rich flake8 autoflake "ptvsd>=4.2" jupytext importmagic epc
 
 ## User Environment Startup
 # Set up user environment
