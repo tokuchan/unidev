@@ -18,6 +18,7 @@ RUN apt-get -y install dialog apt-utils tzdata git
 RUN git clone https://github.com/timothyvanderaerden/add-apt-repository.git /usr/local/share/add-apt-repository
 RUN chmod ugo+rx /usr/local/share/add-apt-repository/add-apt-repository
 RUN ln -s /usr/local/share/add-apt-repository/add-apt-repository /usr/local/bin/add-apt-repository
+RUN apt-get update
 
 ## Package Installation
 # Add custom APT repos
@@ -34,6 +35,7 @@ ccls \
 cmake \
 curl \
 doxygen \
+emacs-nox \
 fish \
 flex \
 g++ \
