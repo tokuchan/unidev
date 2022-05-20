@@ -19,6 +19,7 @@ install:
 .PHONY: .env
 .env: profiles/$(profile)/config.env
 	@echo '# Generated file, do not edit' > $@
+	@echo DISPLAY=$(DISPLAY) >> $@
 	@echo UID=$(shell id -u) >> $@
 	@echo USER=$(shell whoami) >> $@
 	@echo HOME=$(HOME) >> $@

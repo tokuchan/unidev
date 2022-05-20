@@ -35,7 +35,7 @@ ccls \
 cmake \
 curl \
 doxygen \
-emacs-nox \
+emacs \
 fish \
 flex \
 g++ \
