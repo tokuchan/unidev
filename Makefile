@@ -25,6 +25,7 @@ install:
 	@echo UID=$(shell id -u) >> $@
 	@echo USER=$(shell whoami) >> $@
 	@echo HOME=$(HOME) >> $@
+	@echo HHOME=$(HOME)/host/$(cwd) >> $@
 	@echo SSH_AUTH_SOCK=$(SSH_AUTH_SOCK) >> $@
 	@echo SSH_AUTH_SOCK_DIR=$(shell dirname $(SSH_AUTH_SOCK)) >> $@
 	@cat $^ >> $@
