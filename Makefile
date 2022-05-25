@@ -19,6 +19,8 @@ install:
 .PHONY: .env
 .env: profiles/$(profile)/config.env
 	@echo '# Generated file, do not edit' > $@
+	@echo CCACHE_DIR=$(HOME)/.ccache >> $@
+	@echo CCACHE_TEMPDIR=$(HOME)/.ccache >> $@
 	@echo DISPLAY=$(DISPLAY) >> $@
 	@echo UID=$(shell id -u) >> $@
 	@echo USER=$(shell whoami) >> $@

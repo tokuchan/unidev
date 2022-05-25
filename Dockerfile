@@ -31,6 +31,7 @@ autopoint \
 bash \
 bison \
 build-essential \
+ccache \
 ccls \
 cmake \
 curl \
