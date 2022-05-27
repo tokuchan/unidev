@@ -18,13 +18,21 @@ RUN apt-get -y install dialog apt-utils tzdata git
 RUN git clone https://github.com/timothyvanderaerden/add-apt-repository.git /usr/local/share/add-apt-repository
 RUN chmod ugo+rx /usr/local/share/add-apt-repository/add-apt-repository
 RUN ln -s /usr/local/share/add-apt-repository/add-apt-repository /usr/local/bin/add-apt-repository
-RUN apt-get update
+
+# Fetch repos for things we'll compile later
+RUN mkdir -p /usr/local/src \
+ && git clone https://github.com/neovim/neovim /usr/local/src/neovim \
+ && git clone git://git.savannah.gnu.org/emacs.git /usr/local/src/emacs
 
 ## Package Installation
-# Add custom APT repos
+# Install build-deps for emacs
+RUN sed -i 's/# deb-src/deb-src/' /etc/apt/sources.list \
+&&  apt-get update \
+&&  apt-get build-dep -y emacs
 
 # Install needed packages
-RUN apt-get -y install \
+RUN apt-get update \
+&& apt-get -y install \
 autoconf \
 automake \
 autopoint \
@@ -39,7 +47,7 @@ doxygen \
 emacs \
 fish \
 flex \
-g++ \
+g++-12 \
 gettext \
 ispell \
 keychain \
@@ -47,6 +55,10 @@ libboost-all-dev \
 libboost-python-dev \
 libbz2-dev \
 libffi-dev \
+libgccjit-12-dev \
+libgccjit0 \
+libjansson-dev \
+libjansson4 \
 liblzma-dev \
 libncurses5-dev \
 libncursesw5-dev \
@@ -60,9 +72,9 @@ locales \
 make \
 man \
 neovim \
-npm \
 ninja-build \
 nodejs \
+npm \
 pkg-config \
 ripgrep \
 sudo \
@@ -77,9 +89,7 @@ zstd
 
 ## Custom Tooling (Root Level)
 # Install neovim
-RUN mkdir -p /usr/local/src \
- && git clone https://github.com/neovim/neovim /usr/local/src/neovim \
- && cd /usr/local/src/neovim \
+RUN cd /usr/local/src/neovim \
  && git checkout stable \
  && make \
  && make install
@@ -90,6 +100,25 @@ RUN update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110 \
  && update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
+
+# Install emacs 28
+ENV CC="gcc-12"
+RUN cd /usr/local/src/emacs \
+&&  ./autogen.sh \
+&&  ./configure \
+         --with-native-compilation  \
+         --with-gnutls \
+         --with-imagemagick \
+         --with-jpeg \
+         --with-png \
+         --with-rsvg \
+         --with-tiff \
+         --with-wide-int \
+         --with-xft \
+         --with-xml2 \
+         --with-xpm \
+         prefix=/usr/local \
+&&  make install
 
 # Install pyright lsp
 RUN npm install -g pyright
@@ -129,6 +158,9 @@ ARG shell
 ARG editor
 ENV EDITOR=${editor}
 ENV SHELL=${shell}
+
+# Expose spotify control port
+EXPOSE 8080
 
 # Run shell
 ENTRYPOINT $SHELL
