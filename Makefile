@@ -25,19 +25,20 @@ install:
 	@echo UID=$(shell id -u) >> $@
 	@echo USER=$(shell whoami) >> $@
 	@echo HOME=$(HOME) >> $@
-	@echo HHOME=$(HOME)/host/$(cwd) >> $@
+	@echo HHOME=/home/$(USER)/host/$(HOME) >> $@
 	@echo SSH_AUTH_SOCK=$(SSH_AUTH_SOCK) >> $@
 	@echo SSH_AUTH_SOCK_DIR=$(shell dirname $(SSH_AUTH_SOCK)) >> $@
 	@cat $^ >> $@
 
 .PHONY: build
 build: .env
+	@echo "Profile: $(profile)"
 	@$(docker--compose) build
 
 .PHONY: shell
 shell: build install
 	@echo "Profile: $(profile)"
-	@$(call docker--command,-w ~/host/$(cwd),sh)
+	@$(call docker--command,-w /home/$(USER)/host/$(HOME),sh)
 
 .PHONY: clean
 clean:
