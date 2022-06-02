@@ -158,6 +158,7 @@ ARG shell
 ARG editor
 ENV EDITOR=${editor}
 ENV SHELL=${shell}
+RUN ln -s /home/${user}/host/home/${user}/.Xauthority /home/${user}/.Xauthority
 
 # Expose spotify control port
 EXPOSE 8080
