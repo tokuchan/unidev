@@ -13,3 +13,4 @@ profiles/*/local/share/nvim/
 profiles/*/local/share/nvim/shada/main.shada
 *.ccache/
 .spacemacs.env
+.Xauthority
