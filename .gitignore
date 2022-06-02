@@ -11,3 +11,4 @@ profiles/*/local/lib/python3.10/site-packages/
 profiles/*/local/share/fish/fish_history
 profiles/*/local/share/nvim/
 profiles/*/local/share/nvim/shada/main.shada
+*.ccache/
