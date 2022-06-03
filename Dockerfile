@@ -152,6 +152,14 @@ RUN curl -Lo /home/${user}/.local/src/pip/get-pip.py https://bootstrap.pypa.io/g
 RUN sudo python3 /home/${user}/.local/src/pip/get-pip.py
 RUN sudo pip install click sh rich flake8 autoflake "ptvsd>=4.2" jupytext importmagic epc
 
+# Install additional packages
+RUN sudo apt-get update \
+&&  sudo apt-get install -y \
+clang-format \
+clang-tidy \
+libcanberra-gtk-module \
+libcanberra-gtk3-module
+
 ## User Environment Startup
 # Set up user environment
 ARG shell
