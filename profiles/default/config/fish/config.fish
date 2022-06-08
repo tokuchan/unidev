@@ -20,8 +20,8 @@ set -x SHELL /bin/bash
 set PATH $PATH /Users/sspillane/.local/bin
 
 # Set up pyenv
-status is-login; and pyenv init --path | source
-status is-interactive; and pyenv init - | source
+#status is-login; and pyenv init --path | source
+#status is-interactive; and pyenv init - | source
 
 # Ensure nvim plug is installed
 nvim --headless +PlugInstall +qall

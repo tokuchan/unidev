@@ -14,3 +14,5 @@ profiles/*/local/share/nvim/shada/main.shada
 *.ccache/
 .spacemacs.env
 .Xauthority
+profiles/default/local/share/Trash/
+profiles/default/home/.bellport/
