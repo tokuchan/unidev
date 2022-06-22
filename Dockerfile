@@ -8,6 +8,7 @@ MAINTAINER Sean Spillane
 
 LABEL description="UNIversal DEVelopment environment"
 
+## BASIC CONFIGURATION & SETUP
 # Keep apt tools from prompting
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Ny
@@ -24,84 +25,19 @@ RUN mkdir -p /usr/local/src \
  && git clone https://github.com/neovim/neovim /usr/local/src/neovim \
  && git clone git://git.savannah.gnu.org/emacs.git /usr/local/src/emacs
 
-## Package Installation
+
+## EMACS
 # Install build-deps for emacs
 RUN sed -i 's/# deb-src/deb-src/' /etc/apt/sources.list \
-&&  apt-get update \
-&&  apt-get build-dep -y emacs
-
-# Install needed packages
-RUN apt-get update \
-&& apt-get -y install \
-autoconf \
-automake \
-autopoint \
-bash \
-bison \
+&&  apt-get -y update \
+&&  apt-get -y install \
 build-essential \
-ccache \
-ccls \
-cmake \
-curl \
-doxygen \
-emacs \
-fish \
-flex \
 g++-12 \
-gettext \
-ispell \
-keychain \
-libboost-all-dev \
-libboost-python-dev \
-libbz2-dev \
-libffi-dev \
 libgccjit-12-dev \
 libgccjit0 \
-libjansson-dev \
-libjansson4 \
-liblzma-dev \
-libncurses5-dev \
-libncursesw5-dev \
-libreadline-dev \
-libsqlite3-dev \
-libssl-dev \
-libtool \
-libtool-bin \
-llvm \
-locales \
-make \
-man \
-neovim \
-ninja-build \
-nodejs \
-npm \
-pkg-config \
-ripgrep \
-sudo \
-tcsh \
-tk-dev \
-unzip \
-wget \
-xz-utils \
-zlib1g-dev \
-zsh \
-zstd
+&&  apt-get build-dep -y emacs
 
-## Custom Tooling (Root Level)
-# Install neovim
-RUN cd /usr/local/src/neovim \
- && git checkout stable \
- && make \
- && make install
-
-ARG CUSTOM_NVIM_PATH=/usr/local/bin/nvim
-RUN update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110 \
- && update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110 \
- && update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110 \
- && update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110 \
- && update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
-
-# Install emacs 28
+# Install the latest EMACS
 ENV CC="gcc-12"
 RUN cd /usr/local/src/emacs \
 &&  ./autogen.sh \
@@ -118,7 +54,87 @@ RUN cd /usr/local/src/emacs \
          --with-xml2 \
          --with-xpm \
          prefix=/usr/local \
-&&  make install
+&&  make -j$(cat /proc/cpuinfo | grep proc | wc -l) install
+
+
+## NEOVIM
+# Install build-deps for neovim
+RUN apt-get -y update \
+&&  apt-get -y install \
+build-essential \
+curl \
+g++-12 \
+libtool \
+libtool-bin \
+unzip \
+&&  apt-get build-dep -y neovim
+
+# Install neovim
+RUN cd /usr/local/src/neovim \
+ && git checkout stable \
+ && make -j$(cat /proc/cpuinfo | grep proc | wc -l) install
+
+ARG CUSTOM_NVIM_PATH=/usr/local/bin/nvim
+RUN update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110 \
+ && update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110 \
+ && update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110 \
+ && update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110 \
+ && update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
+
+
+## BASIC PACKAGES
+# Install needed packages
+RUN apt-get update \
+&& apt-get -y install \
+autoconf \
+automake \
+autopoint \
+bash \
+bison \
+ccache \
+ccls \
+clang \
+clang-format \
+clang-tidy \
+cmake \
+doxygen \
+fish \
+flex \
+gettext \
+gitk \
+ispell \
+keychain \
+libboost-all-dev \
+libboost-python-dev \
+libbz2-dev \
+libcanberra-gtk-module \
+libcanberra-gtk3-module \
+libffi-dev \
+libjansson-dev \
+libjansson4 \
+liblzma-dev \
+libncurses5-dev \
+libncursesw5-dev \
+libreadline-dev \
+libsqlite3-dev \
+libssl-dev \
+llvm \
+locales \
+make \
+man \
+ninja-build \
+nodejs \
+npm \
+pkg-config \
+ripgrep \
+sudo \
+tcsh \
+tk-dev \
+wget \
+xz-utils \
+zlib1g-dev \
+zsh \
+zstd
 
 # Install pyright lsp
 RUN npm install -g pyright
@@ -150,15 +166,17 @@ RUN pyenv install 3.10.4
 RUN mkdir -p /home/${user}/.local/src/pip
 RUN curl -Lo /home/${user}/.local/src/pip/get-pip.py https://bootstrap.pypa.io/get-pip.py
 RUN sudo python3 /home/${user}/.local/src/pip/get-pip.py
-RUN sudo pip install click sh rich flake8 autoflake "ptvsd>=4.2" jupytext importmagic epc
-
-# Install additional packages
-RUN sudo apt-get update \
-&&  sudo apt-get install -y \
-clang-format \
-clang-tidy \
-libcanberra-gtk-module \
-libcanberra-gtk3-module
+RUN sudo pip install \
+"ptvsd>=4.2" \
+autoflake \
+click \
+epc \
+flake8 \
+importmagic \
+jupytext \
+rich \
+rich-cli \
+sh
 
 ## User Environment Startup
 # Set up user environment
@@ -167,6 +185,10 @@ ARG editor
 ENV EDITOR=${editor}
 ENV SHELL=${shell}
 RUN ln -s /home/${user}/host/home/${user}/.Xauthority /home/${user}/.Xauthority
+
+# Install all fonts
+RUN cd /home/${user}/.local/fonts \
+&&  fc-cache -f
 
 # Expose spotify control port
 EXPOSE 8080
