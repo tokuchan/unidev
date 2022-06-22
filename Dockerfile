@@ -100,6 +100,7 @@ cmake \
 doxygen \
 fish \
 flex \
+fonts-firacode \
 gettext \
 gitk \
 ispell \
@@ -173,6 +174,7 @@ click \
 epc \
 flake8 \
 importmagic \
+ipython \
 jupytext \
 rich \
 rich-cli \
@@ -185,10 +187,6 @@ ARG editor
 ENV EDITOR=${editor}
 ENV SHELL=${shell}
 RUN ln -s /home/${user}/host/home/${user}/.Xauthority /home/${user}/.Xauthority
-
-# Install all fonts
-RUN cd /home/${user}/.local/fonts \
-&&  fc-cache -f
 
 # Expose spotify control port
 EXPOSE 8080
