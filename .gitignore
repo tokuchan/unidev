@@ -16,3 +16,8 @@ profiles/*/local/share/nvim/shada/main.shada
 .Xauthority
 profiles/default/local/share/Trash/
 profiles/default/home/.bellport/
+/profiles/default/home/.dbus/
+/profiles/default/home/.insert-shebang.log
+/profiles/default/home/.ipython/
+/profiles/default/home/.npm/
+/profiles/default/home/.sqlite_history

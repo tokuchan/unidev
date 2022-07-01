@@ -58,6 +58,8 @@
 	tg = tag
 	unstage = reset HEAD --
 	regen-aliases = "!for a in $($HOME/dev/config/aliases.py -f simple -D); do fish -c alias g$a='g $a'; done"
+	patches = log --oneline patches...master
+	gpush = push gerrit patches:refs/for/master
 
 [pull]
 	rebase = false

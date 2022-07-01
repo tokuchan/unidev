@@ -98,6 +98,7 @@ clang-format \
 clang-tidy \
 cmake \
 doxygen \
+figlet \
 fish \
 flex \
 fonts-firacode \
@@ -128,6 +129,7 @@ nodejs \
 npm \
 pkg-config \
 ripgrep \
+sshfs \
 sudo \
 tcsh \
 tk-dev \
@@ -137,16 +139,13 @@ zlib1g-dev \
 zsh \
 zstd
 
-# Install pyright lsp
-RUN npm install -g pyright
-
 ## Custom Tooling (User Level)
 # Set up a user and switch to that user for the remaining commands
 RUN useradd -u ${uid} -ms /usr/bin/fish ${user}
 RUN adduser ${user} sudo
 RUN echo 'ALL            ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers
 
-# Set up environment needed for pyenv
+# Set up environment
 ENV LANGUAGE="en_US.UTF-8"
 ENV LC_ALL="en_US.UTF-8"
 ENV LC_CTYPE="en_US.UTF-8"
@@ -157,6 +156,13 @@ ENV SSH_AUTH_SOCK=${SSH_AUTH_SOCK}
 
 USER ${user}
 WORKDIR /home/${user}
+
+## C++ setup
+RUN sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100 --slave /usr/bin/g++ g++ /usr/bin/g++-12
+
+## Python setup
+# Install pyright lsp
+RUN sudo npm install -g pyright
 
 # Set up pyenv
 RUN git clone https://github.com/pyenv/pyenv.git /home/${user}/.pyenv
