@@ -26,3 +26,4 @@ set PATH $PATH /Users/sspillane/.local/bin
 # Ensure nvim plug is installed
 nvim --headless +PlugInstall +qall
 
+pyenv init - | source

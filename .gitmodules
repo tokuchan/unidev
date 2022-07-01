@@ -34,3 +34,9 @@
 [submodule "profiles/default/home/.emacs.d"]
 	path = profiles/default/home/.emacs.d
 	url = https://github.com/syl20bnr/spacemacs
+[submodule "profiles/default/home/profiles/default/home/.pyenv"]
+	path = profiles/default/home/profiles/default/home/.pyenv
+	url = https://github.com/pyenv/pyenv.git
+[submodule "profiles/default/home/.pyenv"]
+	path = profiles/default/home/.pyenv
+	url = https://github.com/pyenv/pyenv.git

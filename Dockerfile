@@ -173,7 +173,7 @@ RUN pyenv install 3.10.4
 RUN mkdir -p /home/${user}/.local/src/pip
 RUN curl -Lo /home/${user}/.local/src/pip/get-pip.py https://bootstrap.pypa.io/get-pip.py
 RUN sudo python3 /home/${user}/.local/src/pip/get-pip.py
-RUN sudo pip install \
+RUN sudo pip install --upgrade \
 "ptvsd>=4.2" \
 autoflake \
 click \
@@ -182,6 +182,8 @@ flake8 \
 importmagic \
 ipython \
 jupytext \
+pip \
+poetry \
 rich \
 rich-cli \
 sh
