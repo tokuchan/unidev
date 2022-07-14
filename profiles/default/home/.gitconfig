@@ -60,6 +60,7 @@
 	regen-aliases = "!for a in $($HOME/dev/config/aliases.py -f simple -D); do fish -c alias g$a='g $a'; done"
 	patches = log --oneline patches...master
 	gpush = push gerrit patches:refs/for/master
+	log-exclude = "!f() { br=$(git branch --show-current); git log \"${br}\" --not $(git for-each-ref --format='%(refname)' refs/heads/ | grep -v \"refs/heads/${br}\") $*; }; f"
 
 [pull]
 	rebase = false
@@ -75,3 +76,5 @@
 	prompt = false
 [init]
 	defaultBranch = master
+[rerere]
+	enabled = false
