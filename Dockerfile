@@ -128,6 +128,7 @@ ninja-build \
 nodejs \
 npm \
 pkg-config \
+qpdf \
 ripgrep \
 sshfs \
 sudo \
