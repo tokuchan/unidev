@@ -134,6 +134,7 @@ sudo \
 tcsh \
 tk-dev \
 wget \
+xclip \
 xz-utils \
 zlib1g-dev \
 zsh \
