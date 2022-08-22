@@ -57,17 +57,22 @@ This function should only modify configuration layer settings."
           ;;org-superstar-headline-bullets-list '("𝋡","𝋢","𝋣","𝋤")
           ;; Bullets from Kaktovik Inuit numbers
           ;;org-superstar-headline-bullets-list '("𝋁","𝋂","𝋃","𝋄")
-          org-projectile-file "TODOS.org"
+          org-projectile-file "~/org/TODOS.org"
+          org-agenda-files (list "~/org/work.org"
+                                 "~/org/personal.org")
+          org-log-done t
           org-enable-github-support t
           org-enable-reveal-js-support t
           org-reveal-js "~/.config/reveal/reveal.js"
+          org-todo-keywords '((sequence "TODO" "WAIT" "DOING" | "DONE" "WONTDO"))
           )
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     ;; version-control
+     (version-control :variables
+                      version-control-diff-side 'left)
      treemacs
 
      ;; Additional layers for programming languages
@@ -93,7 +98,8 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(nov minimap fira-code-mode gerrit)
+
+   dotspacemacs-additional-packages '(nov minimap fira-code-mode gerrit shell-pop pivotal-tracker)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -603,8 +609,10 @@ before packages are loaded."
 
   ;; Set up Fira ligatures
   (use-package fira-code-mode
-    :custom (fira-code-mode-disabled-ligatures '())
+    :custom (fira-code-mode-disabled-ligatures '("<="))
     :hook prog-mode)
+
+  (add-hook 'git-commit-mode-hook (lambda () (setq fill-column 72)))
 )
 
 
@@ -624,21 +632,19 @@ This function is called at the very end of Spacemacs initialization."
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(blink-cursor-mode nil)
- '(column-number-mode t)
  '(company-idle-delay 0.02)
  '(compilation-always-kill t)
  '(compilation-ask-about-save nil)
  '(compilation-auto-jump-to-first-error nil)
  '(compilation-max-output-line-length nil)
  '(compilation-scroll-output t)
+ '(custom-enabled-themes '(spacemacs-dark))
  '(custom-safe-themes
-   '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
+   '("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "ce17f0b935cb4cf9167b384c8fefcff5448f039b89dbd1e45029400bc52b9b33" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(display-line-numbers-type 'visual)
  '(evil-want-Y-yank-to-eol t)
  '(explicit-shell-file-name "/usr/bin/fish")
- '(global-display-line-numbers-mode t)
- '(global-hl-line-mode t)
+ '(git-gutter:diff-option "-w")
  '(hl-todo-keyword-faces
    '(("TODO" . "#dc752f")
      ("NEXT" . "#dc752f")
@@ -656,16 +662,21 @@ This function is called at the very end of Spacemacs initialization."
      ("XXX+" . "#dc752f")
      ("\\?\\?\\?+" . "#dc752f")))
  '(ispell-dictionary "american")
- '(menu-bar-mode nil)
+ '(minimap-major-modes '(compilation-mode prog-mode))
+ '(minimap-mode t)
+ '(minimap-window-location 'right)
  '(org-fontify-done-headline nil)
  '(org-fontify-todo-headline nil)
  '(package-selected-packages
-   '(gerrit shfmt reformatter insert-shebang helm-gtags ggtags flycheck-bashate fish-mode counsel-gtags counsel swiper ivy company-shell fira-code-mode symon-lingr ox-gfm org-re-reveal dockerfile-mode docker tablist json-mode docker-tramp aio json-snatcher minimap nov esxml kv unkillable-scratch persistent-scratch yasnippet-snippets xterm-color vterm treemacs-magit terminal-here smeargle shell-pop multi-term lsp-ui lsp-treemacs lsp-origami origami helm-lsp lsp-mode helm-ls-git helm-git-grep helm-company helm-c-yasnippet gitignore-templates git-timemachine git-modes git-messenger git-link fuzzy forge yaml markdown-mode magit ghub closql emacsql-sqlite emacsql treepy magit-section git-commit with-editor transient flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip eshell-z eshell-prompt-extras esh-help company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler writeroom-mode visual-fill-column winum volatile-highlights vi-tilde-fringe uuidgen undo-tree queue treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil treemacs cfrs pfuture posframe toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons memoize spaceline powerline restart-emacs request rainbow-delimiters quickrun popwin persp-mode password-generator paradox spinner overseer org-superstar open-junk-file nameless multi-line shut-up macrostep lorem-ipsum link-hint inspector info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile helm-org helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flycheck-package package-lint flycheck pkg-info epl flycheck-elsa flx-ido flx fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-terminal-cursor-changer evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection annalist evil-cleverparens smartparens evil-args evil-anzu anzu eval-sexp-fu emr iedit clang-format projectile paredit list-utils elisp-slime-nav elisp-def f editorconfig dumb-jump s drag-stuff dired-quick-sort devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol ht dash auto-compile packed compat all-the-icons aggressive-indent ace-window ace-link ace-jump-helm-line helm avy popup helm-core which-key use-package pcre2el hydra lv hybrid-mode font-lock+ evil goto-chg dotenv-mode diminish bind-map bind-key async cmake-mode))
+   '(eshell-git-prompt gerrit shfmt reformatter insert-shebang helm-gtags ggtags flycheck-bashate fish-mode counsel-gtags counsel swiper ivy company-shell fira-code-mode symon-lingr ox-gfm org-re-reveal dockerfile-mode docker tablist json-mode docker-tramp aio json-snatcher minimap nov esxml kv unkillable-scratch persistent-scratch yasnippet-snippets xterm-color vterm treemacs-magit terminal-here smeargle shell-pop multi-term lsp-ui lsp-treemacs lsp-origami origami helm-lsp lsp-mode helm-ls-git helm-git-grep helm-company helm-c-yasnippet gitignore-templates git-timemachine git-modes git-messenger git-link fuzzy forge yaml markdown-mode magit ghub closql emacsql-sqlite emacsql treepy magit-section git-commit with-editor transient flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip eshell-z eshell-prompt-extras esh-help company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler writeroom-mode visual-fill-column winum volatile-highlights vi-tilde-fringe uuidgen undo-tree queue treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil treemacs cfrs pfuture posframe toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons memoize spaceline powerline restart-emacs request rainbow-delimiters quickrun popwin persp-mode password-generator paradox spinner overseer org-superstar open-junk-file nameless multi-line shut-up macrostep lorem-ipsum link-hint inspector info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile helm-org helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flycheck-package package-lint flycheck pkg-info epl flycheck-elsa flx-ido flx fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-terminal-cursor-changer evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection annalist evil-cleverparens smartparens evil-args evil-anzu anzu eval-sexp-fu emr iedit clang-format projectile paredit list-utils elisp-slime-nav elisp-def f editorconfig dumb-jump s drag-stuff dired-quick-sort devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol ht dash auto-compile packed compat all-the-icons aggressive-indent ace-window ace-link ace-jump-helm-line helm avy popup helm-core which-key use-package pcre2el hydra lv hybrid-mode font-lock+ evil goto-chg dotenv-mode diminish bind-map bind-key async cmake-mode))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
- '(scroll-bar-mode nil)
- '(tool-bar-mode nil)
- '(truncate-lines t)
- '(warning-suppress-log-types '((comp))))
+ '(shell-pop-shell-type
+   '("ansi-term" "*ansi-term*"
+     (lambda nil
+       (ansi-term shell-pop-term-shell))))
+ '(shell-pop-term-shell "/usr/bin/fish")
+ '(shell-pop-universal-key "C-a")
+ '(shell-pop-window-position 'top))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -684,6 +695,8 @@ This function is called at the very end of Spacemacs initialization."
  '(line-number-current-line ((t (:inherit line-number :background "yellow" :foreground "black"))))
  '(magit-diff-context-highlight ((t (:extend t :background "dark blue"))))
  '(magit-section-highlight ((t (:extend t :background "dim gray"))))
+ '(minimap-active-region-background ((t (:extend t :background "#444"))))
+ '(minimap-current-line-face ((t (:background "#222"))))
  '(show-paren-match ((t (:background "turquoise" :foreground "black"))))
  '(show-paren-mismatch ((t (:background "purple" :foreground "blue"))))
  '(tty-menu-disabled-face ((t (:background "blue" :foreground "white" :strike-through t)))))

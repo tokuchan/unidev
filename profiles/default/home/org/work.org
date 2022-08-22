@@ -1,0 +1,56 @@
+* mstnorm: Implement functionality within mstnorm that generates and prints APU-generated BBO messages, without also printing the APU
+:METADATA:
+[[https://www.pivotaltracker.com/n/projects/851495/stories/180641391][Ticket]]
+[[https://gerrit.corp.maystreet.com/c/bellport/+/15863][Gerrit: mstnorm: Teach mstnorm to handle APU/BBO options]]
+:END:
+** DONE Get test working
+CLOSED: [2022-07-19 Tue 20:42] SCHEDULED: <2022-07-19 Tue>
+** TODO Address Eddie's errors
+SCHEDULED: <2022-07-21 Thu>
+* mstnorm: Implement the independent book-building functionality for `mstnorm` for price-based MBP feeds, and MBO feeds in general
+:METADATA:
+[[https://www.pivotaltracker.com/n/projects/851495/stories/182430333][Ticket]]
+:END:
+** TODO Sync with Jody on usage
+SCHEDULED: <2022-07-20 Wed>
+** TODO Sync on testing
+*** TODO Sync with Jody on testing
+SCHEDULED: <2022-07-21 Thu>
+*** TODO Sync with Ian on testing
+SCHEDULED: <2022-07-20 Wed>
+**** Notes
+We run ~mstnorm~ on sample data, generate JSON and bpstats, then compare those to golden copies.
+Unfortunately, we don't necessarily process all data, but only a small subset. This means the books are not likely to agree.
+There are three banks of tests. One for start of day, for the first half, the second half, and finally the whole day. Only the last back is likely to have a correct book.
+Eventually, we may want to make a tool that randomly picks out PCAP files, to make spot checking easier.
+** TODO Clean up code
+*** DOING Consolidate code into hpp/cpp
+*** TODO DOING Clean up error messages
+SCHEDULED: <2022-07-20 Wed>
+Specifically, I want to convert the current (almost unreadable) messages to my "vertical" format. I'm not going to bother pretty-printing JSON though. That will just be a time sink.
+*** TODO Look for more checking opportunities
+It is not yet clear to me that this code fully checks all possible book-related errors. So, I should either satisfy myself it does, or add more tests.
+*** TODO Convert the book-building code to a new C++ library in tools
+* mstnorm: Implement a progress-indication feature that generates useful output similar to the above, enabled by flag --live-summary
+:METADATA:
+[[https://www.pivotaltracker.com/n/projects/851495/stories/182541460][Ticket]]
+:END:
+** DONE Patch modeline
+CLOSED: [2022-07-19 Tue 21:03] SCHEDULED: <2022-07-19 Tue>
+** TODO Patch basic progress bar
+SCHEDULED: <2022-07-25 Mon>
+** TODO Add fields
+Add useful data fields to the modeline. This way, users can view more information, and configure the modeline to display only what they want.
+** TODO Add logs
+Add more logging messages, especially as pertains to particular messages being processed. For example, dumping a book summary every so often would probably be useful.
+
+* tools: Add support for universal bellport messageTo
+:METADATA:
+[[https://www.pivotaltracker.com/n/projects/2516641/stories/182550464][Ticket]]
+:END:
+*** TODO Create the mstanalyze bellport object
+The idea here is to extract just enough of mstnorm's event loop and callback infrastructure so I can "can" an incoming message as a single type and either return it, or call a callback or whatever ADAM needs to feed it to mstanalyze.
+* mstnorm: Port ~mdx::market_data::bp::{{ostream,set}_pcap_stream_device_observer,set_pcap_stream_device_stats}~ to mstnorm
+:METADATA:
+[[https://www.pivotaltracker.com/n/projects/851495/stories/182549147][Ticket]]
+:END:
