@@ -93,6 +93,7 @@ bash \
 bison \
 ccache \
 ccls \
+cl-clx-sbcl \
 clang \
 clang-format \
 clang-tidy \
@@ -130,6 +131,9 @@ npm \
 pkg-config \
 qpdf \
 ripgrep \
+sbcl \
+sbcl-doc \
+sbcl-source \
 sshfs \
 sudo \
 tcsh \
@@ -181,6 +185,7 @@ autoflake \
 click \
 epc \
 flake8 \
+hy \
 importmagic \
 ipython \
 jupytext \
