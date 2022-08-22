@@ -1,4 +1,8 @@
-function bp-cmake
-cd $HHOME/dev/bellport/build-debug \
-&& cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="-std=c++20 -fPIC" -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DBELLPORT_LICENSE_ENABLED=OFF ../
+function bp--cmake --description 'Build Bellport CMake cache and Makefile'
+bp--with-context cmake -DCMAKE_CXX_FLAGS='-std=c++20 -fPIC -Wall -Wextra' -DCMAKE_BUILD_TYPE=Debug -DBELLPORT_FORCE_DISABLE_REUSEPORT=On \
+            -DBELLPORT_TEST_MODE_QUICK=On -DUSE_NAPATECH=On \
+            -DBELLPORT_USE_OMD=On \
+            -DBELLPORT_USE_KX=On \
+            -DBELLPORT_LICENSE_ENABLED=Off -DBELLPORT_OPENONLOAD_VERSION=onload-7.1.2.141 \
+            -DBELLPORT_APPEND_VC_REV=Off -DBELLPORT_NO_VERSION_NUMBER=On ../
 end
