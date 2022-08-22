@@ -31,3 +31,4 @@ profiles/*/local/share/fish/fish_history
 profiles/*/local/share/nvim/
 profiles/*/local/share/nvim/shada/main.shada
 profiles/*/local/share/virtualenv/
+**/fish/generated_completions/**
