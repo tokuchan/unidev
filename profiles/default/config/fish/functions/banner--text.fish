@@ -1,3 +1,3 @@
 function banner--text
-figlet -t $argv
+figlet -w (tput cols) -t $argv
 end

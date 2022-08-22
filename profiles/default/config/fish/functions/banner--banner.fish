@@ -1,7 +1,4 @@
 function banner--banner
-    echo
-    banner--hr $argv
-    banner--text $argv
-    banner--hr $argv
-    echo '[' $argv ']'
+banner--box $argv
+banner--key $argv
 end
