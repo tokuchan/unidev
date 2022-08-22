@@ -45,7 +45,7 @@
 	fix = "!f() { $EDITOR $(git diff --name-only); }; f"
 	fo = fetch origin
 	last = log -l HEAD
-	lg = log -p
+	lg = "log --no-merges --max-count=15 --pretty=\"format:%C(dim green) %<(12,trunc)%ar %C(bold magenta)%h%Creset %C(green)%<(24,trunc)%an %C(italic\n#ff8800)%s\" --graph"
 	pos = push --set-upstream origin
 	p = push --set-upstream
 	remotes = remote -v
@@ -61,6 +61,9 @@
 	patches = log --oneline patches...master
 	gpush = push gerrit patches:refs/for/master
 	log-exclude = "!f() { br=$(git branch --show-current); git log \"${br}\" --not $(git for-each-ref --format='%(refname)' refs/heads/ | grep -v \"refs/heads/${br}\") $*; }; f"
+	current-branch = "!f() { test -z \"${1}\" && git rev-parse --abbrev-ref HEAD || echo $1; }; f"
+	log-br = "!f() { git log --oneline $(git current-branch $1)...local-master; }; f"
+	pull-rebase = "!f(){ git switch master && git pull --no-edit && git submodule update --init && git switch patches && git rebase; git status; }; f"
 
 [pull]
 	rebase = false
@@ -78,3 +81,7 @@
 	defaultBranch = master
 [rerere]
 	enabled = false
+[status]
+	submodulesummary = true
+[submodule]
+	recurse = true
