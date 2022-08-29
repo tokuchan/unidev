@@ -103,7 +103,9 @@ figlet \
 fish \
 flex \
 fonts-firacode \
+gdb \
 gettext \
+git-gui \
 gitk \
 ispell \
 keychain \
