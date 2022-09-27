@@ -4,6 +4,7 @@ or return
 echo \
 && banner--banner "Build $_flag_target" \
 && bp--build -t "$_flag_target" \
+&& bp--build -t "$_flag_target"_test \
 && banner--banner "Test $_flag_target" \
 && bp--test -f "$_flag_function"
 
