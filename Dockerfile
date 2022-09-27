@@ -103,6 +103,8 @@ figlet \
 fish \
 flex \
 fonts-firacode \
+fossil \
+fzf \
 gdb \
 gettext \
 git-gui \
@@ -127,6 +129,7 @@ llvm \
 locales \
 make \
 man \
+meld \
 ninja-build \
 nodejs \
 npm \
@@ -187,7 +190,6 @@ autoflake \
 click \
 epc \
 flake8 \
-hy \
 importmagic \
 ipython \
 jupytext \
