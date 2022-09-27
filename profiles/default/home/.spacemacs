@@ -77,8 +77,8 @@ This function should only modify configuration layer settings."
 
      ;; Additional layers for programming languages
      (c-c++ :variables
-            ;;c-c++-backend 'lsp-ccls
-            c-c++-backend 'lsp-clangd
+            c-c++-backend 'lsp-ccls
+            ;;c-c++-backend 'lsp-clangd
             c-c++-lsp-enable-semantic-highlighting t
             c-c++-default-mode-for-headers 'c++-mode)
 
@@ -87,7 +87,13 @@ This function should only modify configuration layer settings."
              python-lsp-server 'pyright)
 
      (docker :variables
-             docker-dockerfile-backend 'lsp))
+             docker-dockerfile-backend 'lsp)
+
+     ;; Customize themes a little
+     (theming :variables)
+      theming-modifications
+      '((spacemacs-dark (hl-line :background "000"))
+        (spacemacs-light (hl-line :background "ccc"))))
 
 
    ;; List of additional packages that will be installed without being wrapped
@@ -99,7 +105,7 @@ This function should only modify configuration layer settings."
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
 
-   dotspacemacs-additional-packages '(nov minimap fira-code-mode gerrit shell-pop org-pivotal)
+   dotspacemacs-additional-packages '(nov fira-code-mode gerrit shell-pop org-pivotal)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -677,7 +683,8 @@ This function is called at the very end of Spacemacs initialization."
  '(shell-pop-term-shell "/usr/bin/fish")
  '(shell-pop-universal-key "C-a")
  '(shell-pop-window-position 'top)
- '(warning-suppress-log-types '((comp))))
+ '(warning-suppress-log-types '((comp)))
+ '(warning-suppress-types '((lsp-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
