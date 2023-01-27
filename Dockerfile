@@ -165,6 +165,11 @@ RUN locale-gen en_US.UTF-8
 RUN dpkg-reconfigure locales
 ENV SSH_AUTH_SOCK=${SSH_AUTH_SOCK}
 
+# Install duckdb
+RUN curl -Lo /usr/local/src/duckdb-cli.zip https://github.com/duckdb/duckdb/releases/download/v0.6.0/duckdb_cli-linux-amd64.zip \
+&& unzip /usr/local/src/duckdb-cli.zip -d /usr/local/src/duckdb-cli/ \
+&& ln -s /usr/local/src/duckdb-cli/duckdb /usr/local/bin/duckdb
+
 USER ${user}
 WORKDIR /home/${user}
 
@@ -188,6 +193,7 @@ RUN sudo pip install --upgrade \
 "ptvsd>=4.2" \
 autoflake \
 click \
+duckdb \
 epc \
 flake8 \
 importmagic \
