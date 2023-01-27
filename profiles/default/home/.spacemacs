@@ -90,10 +90,12 @@ This function should only modify configuration layer settings."
              docker-dockerfile-backend 'lsp)
 
      ;; Customize themes a little
-     (theming :variables)
+     (theming :variables
       theming-modifications
       '((spacemacs-dark (hl-line :background "000"))
         (spacemacs-light (hl-line :background "ccc"))))
+
+     cmake)
 
 
    ;; List of additional packages that will be installed without being wrapped
