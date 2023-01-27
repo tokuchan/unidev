@@ -1,3 +1,3 @@
-function glg --wraps='echo bar' --description 'alias glg=echo bar'
-  echo bar $argv; 
+function glg --wraps='echo bar' --wraps='git lg' --description 'alias glg=git lg'
+  git lg $argv
 end
