@@ -88,5 +88,3 @@
 	enabled = false
 [status]
 	submodulesummary = true
-[submodule]
-	recurse = true
