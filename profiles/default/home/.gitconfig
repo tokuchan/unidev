@@ -88,3 +88,5 @@
 	enabled = false
 [status]
 	submodulesummary = true
+[guitool "Stage by edit in term"]
+	cmd = xterm -fa 'fixed' -fs 14 -e git stage -e $FILENAME
