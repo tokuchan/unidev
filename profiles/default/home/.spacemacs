@@ -52,20 +52,20 @@ This function should only modify configuration layer settings."
           lsp-enable-file-watchers t)
      ;; markdown
      multiple-cursors
-     (org :variables
-          ;; Bullets from Mayan numbers
-          ;;org-superstar-headline-bullets-list '("𝋡","𝋢","𝋣","𝋤")
-          ;; Bullets from Kaktovik Inuit numbers
-          ;;org-superstar-headline-bullets-list '("𝋁","𝋂","𝋃","𝋄")
-          org-projectile-file "~/org/TODOS.org"
-          org-agenda-files (list "~/org/work.org"
-                                 "~/org/personal.org")
-          org-log-done t
-          org-enable-github-support t
-          org-enable-reveal-js-support t
-          org-reveal-js "~/.config/reveal/reveal.js"
-          org-todo-keywords '((sequence "TODO" "WAIT" "DOING" | "DONE" "WONTDO"))
-          )
+     ;;(org :variables
+     ;;     ;; Bullets from Mayan numbers
+     ;;     ;;org-superstar-headline-bullets-list '("𝋡","𝋢","𝋣","𝋤")
+     ;;     ;; Bullets from Kaktovik Inuit numbers
+     ;;     ;;org-superstar-headline-bullets-list '("𝋁","𝋂","𝋃","𝋄")
+     ;;     org-projectile-file "~/org/TODOS.org"
+     ;;     org-agenda-files (list "~/org/work.org"
+     ;;                            "~/org/personal.org")
+     ;;     org-log-done t
+     ;;     org-enable-github-support t
+     ;;     org-enable-reveal-js-support t
+     ;;     org-reveal-js "~/.config/reveal/reveal.js"
+     ;;     org-todo-keywords '((sequence "TODO" "WAIT" "DOING" "|" "DONE" "WONTDO"))
+     ;;     )
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
