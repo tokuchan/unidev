@@ -599,6 +599,8 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq read-process-output-max (* 1024 1024))
+  (setq compilation-skip-threshold 2)
+
 
   ;; nov ePub reader settings
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
