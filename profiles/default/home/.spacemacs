@@ -601,6 +601,25 @@ before packages are loaded."
   (setq read-process-output-max (* 1024 1024))
   (setq compilation-skip-threshold 2)
 
+  ;; Define a line-up function for hanging template arguments
+  (defun c++-template-args-cont (langelem)
+    "Control indentation of template parameters handling the special case of '>'.
+Possible Values:
+0   : The first non-ws character is '>'. Line it up under 'template'.
+nil : Otherwise, return nil and run next lineup function."
+    (save-excursion
+      (beginning-of-line)
+      (if (re-search-forward "^[\t ]*>" (line-end-position) t)
+          0)))
+
+  ;; Define a custom C++ mode hook, so I can fix indentation and a few other things.
+  (defun my-c++-mode-hook ()
+    (c-set-offset 'template-args-cont '0)
+    (c-set-offset 'statement-cont '0)
+    (c-set-offset 'substatement-open '0)
+    (c-set-offset 'template-args-cont '(c++-template-args-cont c-lineup-template-args +))
+    (c-set-offset 'func-decl-cont '0))
+  (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
   ;; nov ePub reader settings
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
