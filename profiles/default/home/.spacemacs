@@ -623,6 +623,10 @@ before packages are loaded."
     :hook prog-mode)
 
   (add-hook 'git-commit-mode-hook (lambda () (setq fill-column 72)))
+
+  ;; Automatically resume previous layout, based on the directory in which EMACS is started.
+  (desktop-save-mode)
+  (desktop-read)
 )
 
 
@@ -651,6 +655,7 @@ This function is called at the very end of Spacemacs initialization."
  '(custom-enabled-themes '(spacemacs-dark))
  '(custom-safe-themes
    '("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "ce17f0b935cb4cf9167b384c8fefcff5448f039b89dbd1e45029400bc52b9b33" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
+ '(desktop-save-mode t)
  '(display-line-numbers-type 'visual)
  '(evil-want-Y-yank-to-eol t)
  '(explicit-shell-file-name "/usr/bin/fish")
