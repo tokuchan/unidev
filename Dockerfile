@@ -195,6 +195,7 @@ ipython \
 jupytext \
 pip \
 poetry \
+pygments \
 rich \
 rich-cli \
 sh
