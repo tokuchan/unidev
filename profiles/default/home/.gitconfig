@@ -45,7 +45,8 @@
 	fix = "!f() { $EDITOR $(git diff --name-only); }; f"
 	fo = fetch origin
 	last = log -l HEAD
-	lg = "log --no-merges --max-count=15 --pretty=\"format:%C(dim green) %<(12,trunc)%ar %C(bold magenta)%h%Creset %C(green)%<(24,trunc)%an %C(italic\n#ff8800)%s\" --graph"
+	log-pretty = "log --no-merges --max-count=15 --pretty=\"format:%C(dim green) %<(12,trunc)%ar %C(bold magenta)%h%Creset %C(green)%<(24,trunc)%an %C(italic\n#ff8800)%s\" --graph"
+	lg = log
 	pos = push --set-upstream origin
 	p = push --set-upstream
 	remotes = remote -v
