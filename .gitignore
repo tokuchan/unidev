@@ -32,3 +32,6 @@ profiles/*/local/share/nvim/
 profiles/*/local/share/nvim/shada/main.shada
 profiles/*/local/share/virtualenv/
 **/fish/generated_completions/**
+*.xbel
+*.meldcmp
+.duckdb_history
