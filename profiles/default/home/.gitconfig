@@ -65,6 +65,10 @@
 	current-branch = "!f() { test -z \"${1}\" && git rev-parse --abbrev-ref HEAD || echo $1; }; f"
 	log-br = "!f() { git log --oneline $(git current-branch $1)...local-master; }; f"
 	pull-rebase = "!f(){ git switch master && git pull --no-edit && git submodule update --init && git switch patches && git rebase; git status; }; f"
+	pull-master = "!f(){ b=$(git current-branch); git switch master && git pull --no-edit && git submodule update --init && git switch \"${b}\"; }; f"
+	pull-local-master = "!f(){ b=$(git current-branch); git switch local-master && git pull-master && git pull --no-edit && git submodule update --init && git switch \"${b}\"; }; f"
+	rebase-patches = "!f(){ b=$(git current-branch); git switch patches && git rebase && git switch \"${b}\"; }; f"
+	send = "!f() { br=$(git current-branch); pt=\"${*:-$(git log --oneline --no-abbrev-commit | head -1 | cut -d' ' -f1)}\"; test \"${br}\" != patches && git switch patches && (git cherry-pick \"${pt}\" || git cherry-pick --abort) && git switch \"${br}\"; git log --oneline patches...master; }; f"
 
 [pull]
 	rebase = false
