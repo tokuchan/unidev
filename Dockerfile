@@ -150,6 +150,13 @@ zlib1g-dev \
 zsh \
 zstd
 
+# Add handy Chair Horse passphrase generator
+RUN git clone https://github.com/adamlsd/passgen.git /usr/local/src/passgen \
+&& cd /usr/local/src/passgen \
+&& make \
+&& ln -s /usr/local/src/passgen/passgen /usr/local/bin/passgen \
+&& ln -s /usr/local/src/passgen/pingen /usr/local/bin/pingen
+
 ## Custom Tooling (User Level)
 # Set up a user and switch to that user for the remaining commands
 RUN useradd -u ${uid} -ms /usr/bin/fish ${user}
