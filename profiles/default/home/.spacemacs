@@ -601,6 +601,12 @@ before packages are loaded."
   (setq read-process-output-max (* 1024 1024))
   (setq compilation-skip-threshold 2)
 
+  ;; Define handy function to insert Gerrit-style Change-Id trailers at the cursor
+  (defun insert-change-id ()
+    "Insert a Gerrit-style Change-Id at the cursor."
+    (interactive)
+    (insert (concat "Change-Id: I" (substring (secure-hash 'sha256 (number-to-string (random t))) 0 40))))
+
   ;; Define a line-up function for hanging template arguments
   (defun c++-template-args-cont (langelem)
     "Control indentation of template parameters handling the special case of '>'.
