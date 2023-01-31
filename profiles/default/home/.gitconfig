@@ -71,8 +71,10 @@
 	send = "!f() { br=$(git current-branch); pt=\"${*:-$(git log --oneline --no-abbrev-commit | head -1 | cut -d' ' -f1)}\"; test \"${br}\" != patches && git switch patches && (git cherry-pick \"${pt}\" || git cherry-pick --abort) && git switch \"${br}\"; git log --oneline patches...master; }; f"
 	pwd = "!f () { cd -- ${GIT_PREFIX:-.}; pwd | sed -e \"s|\"$(git do pwd)/\"||\"; }; f"
 	do = "!f () { cd $(git rev-parse --show-toplevel); $*; }; f"
-	state = "!f () { cd -- ${GIT_PREFIX:-.}; echo \"$(git rev-parse --abbrev-ref HEAD)——$(git pwd)——$(git log --pretty=format:%s——%H|head -1)\"; }; f"
-	stsh = "!f () { git stash push -m\"$(git state)\"; }; f"
+	state = "!f () { cd -- ${GIT_PREFIX:-.}; echo \"{\\\"branch\\\":\\\"$(git rev-parse --abbrev-ref HEAD)\\\",\\\"cwd\\\":\\\"$(git pwd)\\\",\\\"commit\\\":\\\"$(git log --pretty=format:\"%H\\\",\\\"log\\\":\\\"%s\"|head -1)\\\"}\" | jq $*; }; f"
+	stsh = "!f () { cd -- ${GIT_PREFIX:-.}; git stash push -m\"$(git state)\"; }; f"
+	sl = "!f () { cd -- ${GIT_PREFIX:-.}; git stash list | cut -d':' -f1,3- | sed 's/^/{\"ref\":\"/;s/: {/\",/' | jq -s . | jq $*; }; f"
+	sr = "!f () { cd -- ${GIT_PREFIX:-.}; git sl | jq \".[] | select(.branch==$(git state .branch)) | select(.cwd==$(git state .cwd))\" | jq $*; }; f"
 
 [pull]
 	rebase = false

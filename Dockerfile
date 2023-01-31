@@ -149,6 +149,7 @@ RUN apt-get -y install xz-utils
 RUN apt-get -y install zlib1g-dev
 RUN apt-get -y install zsh
 RUN apt-get -y install zstd
+RUN apt-get -y install jq
 RUN apt -y autoremove
 
 # Add handy Chair Horse passphrase generator
