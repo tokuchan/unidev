@@ -1,5 +1,3 @@
-function gdo --description 'Run the specified command at the root of the project.'
-pushd (git rev-parse --show-toplevel)
-$argv
-popd
+function gdo --wraps='g do' --description 'alias gdo=g do'
+  g do $argv; 
 end

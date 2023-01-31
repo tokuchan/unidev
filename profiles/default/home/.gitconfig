@@ -69,6 +69,10 @@
 	pull-local-master = "!f(){ b=$(git current-branch); git switch local-master && git pull-master && git pull --no-edit && git submodule update --init && git switch \"${b}\"; }; f"
 	rebase-patches = "!f(){ b=$(git current-branch); git switch patches && git rebase && git switch \"${b}\"; }; f"
 	send = "!f() { br=$(git current-branch); pt=\"${*:-$(git log --oneline --no-abbrev-commit | head -1 | cut -d' ' -f1)}\"; test \"${br}\" != patches && git switch patches && (git cherry-pick \"${pt}\" || git cherry-pick --abort) && git switch \"${br}\"; git log --oneline patches...master; }; f"
+	pwd = "!f () { cd -- ${GIT_PREFIX:-.}; pwd | sed -e \"s|\"$(git do pwd)/\"||\"; }; f"
+	do = "!f () { cd $(git rev-parse --show-toplevel); $*; }; f"
+	state = "!f () { cd -- ${GIT_PREFIX:-.}; echo \"$(git rev-parse --abbrev-ref HEAD)——$(git pwd)——$(git log --pretty=format:%s——%H|head -1)\"; }; f"
+	stsh = "!f () { git stash push -m\"$(git state)\"; }; f"
 
 [pull]
 	rebase = false
