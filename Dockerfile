@@ -84,71 +84,72 @@ RUN update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110 \
 
 ## BASIC PACKAGES
 # Install needed packages
-RUN apt-get update \
-&& apt-get -y install \
-autoconf \
-automake \
-autopoint \
-bash \
-bison \
-ccache \
-ccls \
-cl-clx-sbcl \
-clang \
-clang-format \
-clang-tidy \
-cmake \
-doxygen \
-figlet \
-fish \
-flex \
-fonts-firacode \
-fossil \
-fzf \
-gdb \
-gettext \
-git-gui \
-gitk \
-ispell \
-keychain \
-libboost-all-dev \
-libboost-python-dev \
-libbz2-dev \
-libcanberra-gtk-module \
-libcanberra-gtk3-module \
-libffi-dev \
-libjansson-dev \
-libjansson4 \
-liblzma-dev \
-libncurses5-dev \
-libncursesw5-dev \
-libreadline-dev \
-libsqlite3-dev \
-libssl-dev \
-llvm \
-locales \
-make \
-man \
-meld \
-ninja-build \
-nodejs \
-npm \
-pkg-config \
-qpdf \
-ripgrep \
-sbcl \
-sbcl-doc \
-sbcl-source \
-sshfs \
-sudo \
-tcsh \
-tk-dev \
-wget \
-xclip \
-xz-utils \
-zlib1g-dev \
-zsh \
-zstd
+RUN apt-get update
+RUN apt-get -y install autoconf
+RUN apt-get -y install automake
+RUN apt-get -y install autopoint
+RUN apt-get -y install bash
+RUN apt-get -y install bison
+RUN apt-get -y install ccache
+RUN apt-get -y install ccls
+RUN apt-get -y install cl-clx-sbcl
+RUN apt-get -y install clang
+RUN apt-get -y install clang-format
+RUN apt-get -y install clang-tidy
+RUN apt-get -y install cmake
+RUN apt-get -y install doxygen
+RUN apt-get -y install figlet
+RUN apt-get -y install fish
+RUN apt-get -y install flex
+RUN apt-get -y install fonts-firacode
+RUN apt-get -y install fossil
+RUN apt-get -y install fzf
+RUN apt-get -y install gdb
+RUN apt-get -y install gettext
+RUN apt-get -y install git-gui
+RUN apt-get -y install gitk
+RUN apt-get -y install golang
+RUN apt-get -y install ispell
+RUN apt-get -y install keychain
+RUN apt-get -y install libboost-all-dev
+RUN apt-get -y install libboost-python-dev
+RUN apt-get -y install libbz2-dev
+RUN apt-get -y install libcanberra-gtk-module
+RUN apt-get -y install libcanberra-gtk3-module
+RUN apt-get -y install libffi-dev
+RUN apt-get -y install libjansson-dev
+RUN apt-get -y install libjansson4
+RUN apt-get -y install liblzma-dev
+RUN apt-get -y install libncurses5-dev
+RUN apt-get -y install libncursesw5-dev
+RUN apt-get -y install libreadline-dev
+RUN apt-get -y install libsqlite3-dev
+RUN apt-get -y install libssl-dev
+RUN apt-get -y install llvm
+RUN apt-get -y install locales
+RUN apt-get -y install make
+RUN apt-get -y install man
+RUN apt-get -y install meld
+RUN apt-get -y install ninja-build
+RUN apt-get -y install nodejs
+RUN apt-get -y install npm
+RUN apt-get -y install pkg-config
+RUN apt-get -y install qpdf
+RUN apt-get -y install ripgrep
+RUN apt-get -y install sbcl
+RUN apt-get -y install sbcl-doc
+RUN apt-get -y install sbcl-source
+RUN apt-get -y install sshfs
+RUN apt-get -y install sudo
+RUN apt-get -y install tcsh
+RUN apt-get -y install tk-dev
+RUN apt-get -y install wget
+RUN apt-get -y install xclip
+RUN apt-get -y install xz-utils
+RUN apt-get -y install zlib1g-dev
+RUN apt-get -y install zsh
+RUN apt-get -y install zstd
+RUN apt -y autoremove
 
 # Add handy Chair Horse passphrase generator
 RUN git clone https://github.com/adamlsd/passgen.git /usr/local/src/passgen \
