@@ -18,6 +18,7 @@ set -x SHELL /bin/bash
 
 # Created by `pipx` on 2022-03-14 15:48:49
 set PATH $PATH /Users/sspillane/.local/bin
+set PATH $PATH ~/.local/bin
 
 # Set up pyenv
 #status is-login; and pyenv init --path | source
