@@ -151,6 +151,7 @@ RUN apt-get -y install zsh
 RUN apt-get -y install zstd
 RUN apt-get -y install jq
 RUN apt-get -y install bat
+RUN apt-get -y install stow
 RUN apt -y autoremove
 
 # Add handy Chair Horse passphrase generator
