@@ -5,31 +5,31 @@
 	path = profiles/default/local/share/nvim/plugged/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
 [submodule "coc.nvim"]
-	path = coc.nvim
+	path = submodules/vim/coc.nvim
 	url = git@github.com:tokuchan/unidev.git
 [submodule "fugitive-gitlab.vim"]
-	path = fugitive-gitlab.vim
+	path = submodules/vim/fugitive-gitlab.vim
 	url = git@github.com:tokuchan/unidev.git
 [submodule "nvim-treesitter"]
-	path = nvim-treesitter
+	path = submodules/vim/nvim-treesitter
 	url = git@github.com:tokuchan/unidev.git
 [submodule "plenary.nvim"]
-	path = plenary.nvim
+	path = submodules/vim/plenary.nvim
 	url = git@github.com:tokuchan/unidev.git
 [submodule "telescope.nvim"]
-	path = telescope.nvim
+	path = submodules/vim/telescope.nvim
 	url = git@github.com:tokuchan/unidev.git
 [submodule "vim-easymotion"]
-	path = vim-easymotion
+	path = submodules/vim/vim-easymotion
 	url = git@github.com:tokuchan/unidev.git
 [submodule "vim-fugitive"]
-	path = vim-fugitive
+	path = submodules/vim/vim-fugitive
 	url = git@github.com:tokuchan/unidev.git
 [submodule "vim-surround"]
-	path = vim-surround
+	path = submodules/vim/vim-surround
 	url = git@github.com:tokuchan/unidev.git
 [submodule "which-key.nvim"]
-	path = which-key.nvim
+	path = submodules/vim/which-key.nvim
 	url = git@github.com:tokuchan/unidev.git
 [submodule "profiles/default/home/.emacs.d"]
 	path = profiles/default/home/.emacs.d
