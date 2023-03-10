@@ -40,3 +40,6 @@
 [submodule "profiles/default/home/.pyenv"]
 	path = profiles/default/home/.pyenv
 	url = https://github.com/pyenv/pyenv.git
+[submodule "submodules/neovim"]
+	path = submodules/neovim
+	url = https://github.com/neovim/neovim
