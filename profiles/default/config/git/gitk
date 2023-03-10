@@ -56,10 +56,10 @@ set web_browser open
 set geometry(main) 2880x1502+0+0
 set geometry(state) normal
 set geometry(topwidth) 2880
-set geometry(topheight) 548
-set geometry(pwsash0) "1674 1"
-set geometry(pwsash1) "2280 1"
+set geometry(topheight) 923
+set geometry(pwsash0) "1672 1"
+set geometry(pwsash1) "2278 1"
 set geometry(botwidth) 1869
-set geometry(botheight) 949
+set geometry(botheight) 574
 set permviews {{Locals {} --branches {}}
 }
