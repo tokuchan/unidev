@@ -97,6 +97,7 @@ RUN apt-get -y install clang
 RUN apt-get -y install clang-format
 RUN apt-get -y install clang-tidy
 RUN apt-get -y install cmake
+RUN apt-get -y install curl
 RUN apt-get -y install doxygen
 RUN apt-get -y install figlet
 RUN apt-get -y install fish
@@ -152,6 +153,8 @@ RUN apt-get -y install zstd
 RUN apt-get -y install jq
 RUN apt-get -y install bat
 RUN apt-get -y install stow
+RUN apt-get -y install sqlite3
+RUN apt-get -y install unzip
 RUN apt -y autoremove
 
 # Add handy Chair Horse passphrase generator
@@ -215,7 +218,9 @@ poetry \
 pygments \
 rich \
 rich-cli \
-sh
+sh \
+sqlparse \
+termsql
 
 ## User Environment Startup
 # Set up user environment
