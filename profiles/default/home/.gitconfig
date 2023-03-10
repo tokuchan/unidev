@@ -48,7 +48,7 @@
 	log-pretty = "log --no-merges --max-count=15 --pretty=\"format:%C(dim green) %<(12,trunc)%ar %C(bold magenta)%h%Creset %C(green)%<(24,trunc)%an %C(italic\n#ff8800)%s\" --graph"
 	lg = log
 	pos = push --set-upstream origin
-	p = push --set-upstream
+	p = pull
 	remotes = remote -v
 	rs = restore --staged
 	st = status
@@ -75,6 +75,7 @@
 	stsh = "!f () { cd -- ${GIT_PREFIX:-.}; git stash push -m\"$(git state)\"; }; f"
 	sl = "!f () { cd -- ${GIT_PREFIX:-.}; git stash list | grep \": {\" | cut -d':' -f1,3- | sed 's/^/{\"ref\":\"/;s/: {/\",/' | jq -s . | jq $*; }; f"
 	sr = "!f () { cd -- ${GIT_PREFIX:-.}; git sl | jq \".[] | select(.branch==$(git state .branch)) | select(.cwd==$(git state .cwd))\" | jq $*; }; f"
+	changed = log --pretty=format:'%Cred%h%x09%Creset%(trailers:key=Change-Id,valueonly,separator=%x2C)%x09%Cgreen%s%Creset'
 
 [pull]
 	rebase = false
@@ -96,3 +97,5 @@
 	submodulesummary = true
 [guitool "Stage by edit in term"]
 	cmd = xterm -fa 'fixed' -fs 14 -e git stage -e $FILENAME
+[diff]
+	ignoreSubmodules = dirty
