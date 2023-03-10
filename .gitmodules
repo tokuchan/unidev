@@ -43,3 +43,6 @@
 [submodule "submodules/neovim"]
 	path = submodules/neovim
 	url = https://github.com/neovim/neovim
+[submodule "submodules/emacs/emacs"]
+	path = submodules/emacs/emacs
+	url = git://git.savannah.gnu.org/emacs.git
