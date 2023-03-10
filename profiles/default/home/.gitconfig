@@ -99,3 +99,5 @@
 	cmd = xterm -fa 'fixed' -fs 14 -e git stage -e $FILENAME
 [diff]
 	ignoreSubmodules = dirty
+[advice]
+	skippedCherryPicks = false
