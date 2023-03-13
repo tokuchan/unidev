@@ -43,3 +43,12 @@ shell: build install
 .PHONY: clean
 clean:
 	@-rm .env
+
+.PHONY: neovim-clean
+neovim-clean:
+	cd submodules/vim/ && ds -v 'bash -c "cd neovim && make clean"'
+
+.PHONY: neovim
+neovim:
+	cd submodules/vim/ && ds -v
+	mv submodules/vim/breakbulk/* breakbulk/
