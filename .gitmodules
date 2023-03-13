@@ -41,7 +41,7 @@
 	path = profiles/default/home/.pyenv
 	url = https://github.com/pyenv/pyenv.git
 [submodule "submodules/neovim"]
-	path = submodules/neovim
+	path = submodules/vim/neovim
 	url = https://github.com/neovim/neovim
 [submodule "submodules/emacs/emacs"]
 	path = submodules/emacs/emacs
