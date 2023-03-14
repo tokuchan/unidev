@@ -64,8 +64,7 @@ breakbulk/emacs: DockerShell/dist
 
 .PHONY: stow-%
 stow-%:
-	mkdir -p $(HOME)/.local
-	stow -t $(HOME)/.local -d breakbulk $*
+	stow -t $(HOME) -d $(shell realpath ./breakbulk) $*
 
 .PHONY: stow-emacs-libs
 stow-emacs-libs:
