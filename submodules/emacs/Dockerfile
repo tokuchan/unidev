@@ -57,7 +57,7 @@ else ./autogen.sh; \
 fi; \
 if [ -e Makefile ]; \
 then echo "Skipping configure"; \
-else ./configure \
+else CFLAGS="${CFLAGS} -R ${rootdir}/breakbulk/emacs/lib" ./configure \
          --with-native-compilation  \
          --with-gnutls \
          --with-imagemagick \

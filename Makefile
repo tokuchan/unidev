@@ -61,3 +61,16 @@ breakbulk/neovim: DockerShell/dist
 
 breakbulk/emacs: DockerShell/dist
 	cd submodules/emacs && ds -v
+
+.PHONY: stow-%
+stow-%:
+	mkdir -p $(HOME)/.local
+	stow -t $(HOME)/.local -d breakbulk $*
+
+.PHONY: stow-emacs-libs
+stow-emacs-libs:
+	sudo apt-get -y install g++-12
+	sudo apt-get -y install libgccjit-12-dev
+	sudo apt-get -y install libgccjit0
+
+stow-emacs: stow-emacs-libs
