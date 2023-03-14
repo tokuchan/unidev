@@ -6,7 +6,8 @@ else
 endif
 docker--command = $(docker--compose) run $1 --rm $(docker--container) $2
 
-all: build shell
+#all: build shell
+all: breakbulk
 
 .PHONY: install
 install:
@@ -41,13 +42,22 @@ shell: build install
 	@$(call docker--command,-w /home/$(USER)/host/$(HOME),sh)
 
 .PHONY: clean
-clean:
+clean: DockerShell/dist-clean
 	@-rm .env
 
-.PHONY: neovim-clean
-neovim-clean:
-	cd submodules/vim/ && ds -v 'bash -c "cd neovim && make clean"'
+.PHONY: breakbulk
+breakbulk: DockerShell/dist breakbulk/neovim breakbulk/emacs
 
-.PHONY: neovim
-neovim:
+.PHONY: DockerShell/dist-clean
+DockerShell/dist-clean:
+	rm -rf submodules/DockerShell/dist
+
+DockerShell/dist:
+	pip install -U poetry
+	cd submodules/DockerShell && poetry build && pip install dist/dockershell-*.tar.gz
+
+breakbulk/neovim: DockerShell/dist
 	cd submodules/vim/ && ds -v
+
+breakbulk/emacs: DockerShell/dist
+	cd submodules/emacs && ds -v
