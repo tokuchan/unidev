@@ -51,4 +51,3 @@ neovim-clean:
 .PHONY: neovim
 neovim:
 	cd submodules/vim/ && ds -v
-	mv submodules/vim/breakbulk/* breakbulk/

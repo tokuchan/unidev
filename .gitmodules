@@ -46,3 +46,6 @@
 [submodule "submodules/emacs/emacs"]
 	path = submodules/emacs/emacs
 	url = git://git.savannah.gnu.org/emacs.git
+[submodule "submodules/DockerShell"]
+	path = submodules/DockerShell
+	url = git@github.com:tokuchan/DockerShell.git
