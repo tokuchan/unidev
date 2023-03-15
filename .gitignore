@@ -37,3 +37,5 @@ profiles/*/local/share/virtualenv/
 .duckdb_history
 breakbulk/emacs/
 breakbulk/neovim/
+unidev.old/
+breakbulk/git/.config/git/gitk
