@@ -35,3 +35,5 @@ profiles/*/local/share/virtualenv/
 *.xbel
 *.meldcmp
 .duckdb_history
+breakbulk/emacs/
+breakbulk/neovim/

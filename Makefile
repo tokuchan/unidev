@@ -62,6 +62,9 @@ breakbulk/neovim: DockerShell/dist
 breakbulk/emacs: DockerShell/dist
 	cd submodules/emacs && ds -v
 
+.PHONY: stow-all
+stow-all: stow-dotfiles stow-emacs stow-emacs-config stow-neovim stow-neovim-config stow-git stow-fish
+
 .PHONY: stow-%
 stow-%:
 	stow -t $(HOME) -d $(shell realpath ./breakbulk) $*
