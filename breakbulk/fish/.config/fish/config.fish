@@ -25,6 +25,6 @@ set PATH $PATH ~/.local/bin
 #status is-interactive; and pyenv init - | source
 
 # Ensure nvim plug is installed
-nvim --headless +PlugInstall +qall
+#nvim --headless +PlugInstall +qall
 
-pyenv init - | source
+#pyenv init - | source
