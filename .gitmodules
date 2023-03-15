@@ -5,31 +5,31 @@
 	path = profiles/default/local/share/nvim/plugged/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
 [submodule "coc.nvim"]
-	path = submodules/vim/coc.nvim
+	path = breakbulk/dotfiles/.local/share/nvim/plugged/coc.nvim
 	url = git@github.com:tokuchan/unidev.git
 [submodule "fugitive-gitlab.vim"]
-	path = submodules/vim/fugitive-gitlab.vim
+	path = breakbulk/dotfiles/.local/share/nvim/plugged/fugitive-gitlab.vim
 	url = git@github.com:tokuchan/unidev.git
 [submodule "nvim-treesitter"]
-	path = submodules/vim/nvim-treesitter
+	path = breakbulk/dotfiles/.local/share/nvim/plugged/nvim-treesitter
 	url = git@github.com:tokuchan/unidev.git
 [submodule "plenary.nvim"]
-	path = submodules/vim/plenary.nvim
+	path = breakbulk/dotfiles/.local/share/nvim/plugged/plenary.nvim
 	url = git@github.com:tokuchan/unidev.git
 [submodule "telescope.nvim"]
-	path = submodules/vim/telescope.nvim
+	path = breakbulk/dotfiles/.local/share/nvim/plugged/telescope.nvim
 	url = git@github.com:tokuchan/unidev.git
 [submodule "vim-easymotion"]
-	path = submodules/vim/vim-easymotion
+	path = breakbulk/dotfiles/.local/share/nvim/plugged/vim-easymotion
 	url = git@github.com:tokuchan/unidev.git
 [submodule "vim-fugitive"]
-	path = submodules/vim/vim-fugitive
+	path = breakbulk/dotfiles/.local/share/nvim/plugged/vim-fugitive
 	url = git@github.com:tokuchan/unidev.git
 [submodule "vim-surround"]
-	path = submodules/vim/vim-surround
+	path = breakbulk/dotfiles/.local/share/nvim/plugged/vim-surround
 	url = git@github.com:tokuchan/unidev.git
 [submodule "which-key.nvim"]
-	path = submodules/vim/which-key.nvim
+	path = breakbulk/dotfiles/.local/share/nvim/plugged/which-key.nvim
 	url = git@github.com:tokuchan/unidev.git
 [submodule "profiles/default/home/.emacs.d"]
 	path = profiles/default/home/.emacs.d
