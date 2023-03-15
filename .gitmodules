@@ -1,9 +1,6 @@
 [submodule "local/share/nvim/plugged/coc.nvim"]
 	path = local/share/nvim/plugged/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
-[submodule "local/share/nvim/plugged/nvim-treesitter"]
-	path = profiles/default/local/share/nvim/plugged/nvim-treesitter
-	url = https://github.com/nvim-treesitter/nvim-treesitter.git
 [submodule "coc.nvim"]
 	path = breakbulk/dotfiles/.local/share/nvim/plugged/coc.nvim
 	url = git@github.com:tokuchan/unidev.git
@@ -31,9 +28,6 @@
 [submodule "which-key.nvim"]
 	path = breakbulk/dotfiles/.local/share/nvim/plugged/which-key.nvim
 	url = git@github.com:tokuchan/unidev.git
-[submodule "profiles/default/home/.emacs.d"]
-	path = profiles/default/home/.emacs.d
-	url = https://github.com/syl20bnr/spacemacs
 [submodule "profiles/default/home/profiles/default/home/.pyenv"]
 	path = profiles/default/home/profiles/default/home/.pyenv
 	url = https://github.com/pyenv/pyenv.git
@@ -49,3 +43,6 @@
 [submodule "submodules/DockerShell"]
 	path = submodules/DockerShell
 	url = git@github.com:tokuchan/DockerShell.git
+[submodule "breakbulk/emacs-config/.emacs.d"]
+	path = breakbulk/emacs-config/.emacs.d
+	url = git@github.com:tokuchan/spacemacs.git
