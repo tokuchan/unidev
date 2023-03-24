@@ -86,6 +86,7 @@
 [merge]
 	tool = meld
 	ff = true
+	conflictstyle = diff3
 
 [mergetool]
 	prompt = false
