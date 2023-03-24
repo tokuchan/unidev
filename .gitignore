@@ -39,3 +39,5 @@ breakbulk/emacs/
 breakbulk/neovim/
 unidev.old/
 breakbulk/git/.config/git/gitk
+breakbulk/dotfiles/.local/pipx/
+breakbulk/dotfiles/.local/share/man/
