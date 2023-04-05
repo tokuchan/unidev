@@ -28,3 +28,10 @@ set PATH $PATH ~/.local/bin
 #nvim --headless +PlugInstall +qall
 
 #pyenv init - | source
+
+# If autojump is installed, set it up
+if test -f /usr/share/autojump/autojump.fish
+source /usr/share/autojump/autojump.fish
+else
+echo "Autojump not installed"
+end
