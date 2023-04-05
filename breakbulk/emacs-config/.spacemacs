@@ -51,7 +51,9 @@ This function should only modify configuration layer settings."
           lsp-use-plists nil
           lsp-log-io nil
           lsp-file-watch-threshold 5000
-          lsp-enable-file-watchers t)
+          lsp-enable-file-watchers t
+          lsp-modeline-code-actions-segments '(count icon)
+          )
      ;; markdown
      multiple-cursors
      ;;(org :variables
@@ -629,6 +631,23 @@ nil : Otherwise, return nil and run next lineup function."
       (if (re-search-forward "^[\t ]*>" (line-end-position) t)
           0)))
 
+  ;; Define a line-up function for braced blocks under braceless ones
+;;  (defun c++-braced-under-braceless-block (langelem)
+;;    "Control indentation of braced blocks that sit under braceless ones. For example:
+;;
+;;  if ( condition ) try
+;;  {
+;;    // Do something
+;;  }
+;;
+;;would be correct indentation.
+;;
+;;Possible Values:
+;;0   : The first non-ws character is '{'. Line it up under
+;;nil :
+;;"
+;;    )
+
   ;; Define a custom C++ mode hook, so I can fix indentation and a few other things.
   (defun my-c++-mode-hook ()
     (c-set-offset 'template-args-cont '0)
@@ -744,21 +763,8 @@ This function is called at the very end of Spacemacs initialization."
  '(company-preview ((t (:background "#34323e" :foreground "#9a9aba" :height 1.25))))
  '(completions-highlight ((t nil)))
  '(cursor ((t (:background "DarkGoldenrod2" :distant-foreground "black" :foreground "black" :weight heavy))))
- '(ediff-current-diff-C ((t (:extend t :background "navy" :foreground "white smoke"))))
- '(ediff-fine-diff-A ((t (:extend t :background "dark red" :foreground "white smoke"))))
- '(ediff-fine-diff-B ((t (:background "dark green" :foreground "white smoke"))))
- '(helm-selection ((t (:extend t :background "#b5ffd1" :foreground "black"))))
- '(highlight ((t (:background "#444155" :foreground "#b2b2b2"))))
- '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t)
- '(hl-line ((t (:background "000"))))
- '(isearch ((t (:background "magenta4" :foreground "yellow"))))
- '(lazy-highlight ((t (:background "turquoise3" :foreground "black"))))
- '(line-number-current-line ((t (:inherit line-number :background "yellow" :foreground "black"))))
- '(magit-diff-context-highlight ((t (:extend t :background "dark blue"))))
- '(magit-section-highlight ((t (:extend t :background "dim gray"))))
- '(minimap-active-region-background ((t (:extend t :background "#444"))))
- '(minimap-current-line-face ((t (:background "#222"))))
- '(show-paren-match ((t (:background "turquoise" :foreground "black"))))
- '(show-paren-mismatch ((t (:background "purple" :foreground "blue"))))
- '(tty-menu-disabled-face ((t (:background "blue" :foreground "white" :strike-through t)))))
+ '(hi-blue ((t (:background "pale turquoise" :foreground "dim gray"))))
+ '(hi-blue-b ((t (:foreground "deep sky blue" :weight bold))))
+ '(hl-line ((t (:extend t :background "#000000" :distant-foreground "white smoke"))))
+ '(term-color-cyan ((t (:background "#146780" :foreground "#28def0")))))
 )
