@@ -67,6 +67,8 @@ function fish_prompt
     end
 
     echo -n (prompt_hostname)
+    set_color -o red
+    echo -n "($SHELL_TYPE)"
     set_color -o white
     echo -n :(prompt_pwd)
     set_color -o green

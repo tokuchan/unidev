@@ -25,6 +25,7 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
+    export SHELL_TYPE="$SHELL_TYPE Unidev "
     exec fish
   '';
 
