@@ -2,6 +2,7 @@
 
 pkgs.mkShell {
   packages = [
+    pkgs.autojump
     pkgs.bat
     pkgs.emacs29
     pkgs.exa
