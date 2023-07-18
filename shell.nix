@@ -3,10 +3,16 @@
 pkgs.mkShell {
   packages = [
     pkgs.emacs29
+    pkgs.neovim
     pkgs.fish
+    pkgs.gnumake
+    pkgs.stow
+    pkgs.exa
   ];
 
   shellHook = ''
     exec fish
   '';
+
+  EDITOR = "nvim";
 }

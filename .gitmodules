@@ -34,15 +34,6 @@
 [submodule "profiles/default/home/.pyenv"]
 	path = unidev.old/profiles/default/home/.pyenv
 	url = https://github.com/pyenv/pyenv.git
-[submodule "submodules/neovim"]
-	path = submodules/vim/neovim
-	url = https://github.com/neovim/neovim
-[submodule "submodules/emacs/emacs"]
-	path = submodules/emacs/emacs
-	url = git://git.savannah.gnu.org/emacs.git
-[submodule "submodules/DockerShell"]
-	path = submodules/DockerShell
-	url = git@github.com:tokuchan/DockerShell.git
 [submodule "breakbulk/emacs-config/.emacs.d"]
 	path = breakbulk/emacs-config/.emacs.d
 	url = git@github.com:tokuchan/spacemacs.git
