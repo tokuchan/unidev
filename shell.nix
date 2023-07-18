@@ -2,6 +2,7 @@
 
 pkgs.mkShell {
   packages = [
+    pkgs.asciidoctor-with-extensions
     pkgs.bat
     pkgs.emacs29
     pkgs.exa
