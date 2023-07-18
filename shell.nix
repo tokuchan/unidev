@@ -2,12 +2,24 @@
 
 pkgs.mkShell {
   packages = [
+    pkgs.bat
     pkgs.emacs29
-    pkgs.neovim
-    pkgs.fish
-    pkgs.gnumake
-    pkgs.stow
     pkgs.exa
+    pkgs.figlet
+    pkgs.fish
+    pkgs.fzf
+    pkgs.gitFull
+    pkgs.gnumake
+    pkgs.jq
+    pkgs.keychain
+    pkgs.meld
+    pkgs.neovim
+    pkgs.qpdf
+    pkgs.ripgrep
+    pkgs.sqlite
+    pkgs.sshfs
+    pkgs.stow
+    pkgs.xclip
   ];
 
   shellHook = ''
