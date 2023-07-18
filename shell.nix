@@ -2,6 +2,7 @@
 
 pkgs.mkShell {
   packages = [
+    pkgs.autojump
     pkgs.asciidoctor-with-extensions
     pkgs.bat
     pkgs.emacs29

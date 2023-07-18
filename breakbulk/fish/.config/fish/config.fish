@@ -11,7 +11,11 @@ set -q MANPATH; or set MANPATH ''; set -gx MANPATH "/opt/homebrew/share/man" $MA
 set -q INFOPATH; or set INFOPATH ''; set -gx INFOPATH "/opt/homebrew/share/info" $INFOPATH;
 
 # Set up autojump
-[ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+if which autojump > /dev/null
+  source (which autojump | sed 's,bin.*$,,')/share/fish/vendor_conf.d/autojump.fish
+else
+  echo "Autojump not installed"
+end
 
 # Tell subprograms to use bash
 set -x SHELL /bin/bash
@@ -29,9 +33,3 @@ set PATH $PATH ~/.local/bin
 
 #pyenv init - | source
 
-# If autojump is installed, set it up
-if test -f /usr/share/autojump/autojump.fish
-source /usr/share/autojump/autojump.fish
-else
-echo "Autojump not installed"
-end
