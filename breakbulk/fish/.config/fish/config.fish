@@ -11,7 +11,7 @@ set -q MANPATH; or set MANPATH ''; set -gx MANPATH "/opt/homebrew/share/man" $MA
 set -q INFOPATH; or set INFOPATH ''; set -gx INFOPATH "/opt/homebrew/share/info" $INFOPATH;
 
 # Set up autojump
-if which autojump > /dev/null
+if which autojump > /dev/null 2> /dev/null
   source (which autojump | sed 's,bin.*$,,')/share/fish/vendor_conf.d/autojump.fish
 else
   echo "Autojump not installed"
