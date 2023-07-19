@@ -8,19 +8,24 @@ pkgs.mkShell {
     pkgs.emacs29
     pkgs.exa
     pkgs.figlet
+    pkgs.fira-code
+    pkgs.fira-code-symbols
     pkgs.fish
     pkgs.fzf
     pkgs.gitFull
     pkgs.gnumake
     pkgs.jq
     pkgs.keychain
+    pkgs.libtool
     pkgs.meld
+    pkgs.mosh
     pkgs.neovim
     pkgs.qpdf
     pkgs.ripgrep
     pkgs.sqlite
     pkgs.sshfs
     pkgs.stow
+    pkgs.tmux
     pkgs.xclip
   ];
 
@@ -30,4 +35,5 @@ pkgs.mkShell {
   '';
 
   EDITOR = "nvim";
+  GIT_SSH = "/usr/bin/ssh";
 }
